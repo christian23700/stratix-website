@@ -3,7 +3,7 @@ import Link from "next/link";
 import { getDictionary } from "@/lib/get-dictionary";
 import { locales } from "@/lib/i18n-config";
 import { pageMetadata } from "@/lib/seo";
-import { faqJsonLd } from "@/lib/structured-data";
+import { faqJsonLd, heroVideoJsonLd } from "@/lib/structured-data";
 import JsonLd from "@/components/JsonLd";
 import { company } from "@/lib/company";
 import ButtonLink from "@/components/ui/Button";
@@ -16,6 +16,7 @@ import CtaBanner from "@/components/ui/CtaBanner";
 import Icon from "@/components/ui/Icon";
 import ProductCard from "@/components/ProductCard";
 import ServiceOrbit from "@/components/ServiceOrbit";
+import HeroVideo from "@/components/HeroVideo";
 
 // Visual shown for each showcase item, in order.
 const showcaseVisual = ["ecommerce", "software", "mobility"];
@@ -36,7 +37,7 @@ export default function HomePage({ params }) {
 
   return (
     <>
-      <JsonLd data={faqJsonLd(locale)} />
+      <JsonLd data={[faqJsonLd(locale), heroVideoJsonLd(locale)]} />
       {/* Hero */}
       <section className="hero-wash">
         <div className="container-x pb-16 pt-36 text-center sm:pb-20 sm:pt-44">
@@ -57,6 +58,14 @@ export default function HomePage({ params }) {
             </ButtonLink>
           </div>
           <p className="mt-6 text-sm text-ink-muted">{hero.note}</p>
+
+          {/* Explainer video of every service, where Genuka shows its product */}
+          <div className="relative mx-auto mt-14 max-w-5xl">
+            <div className="absolute -inset-3 -z-0 rounded-[28px] bg-gradient-to-br from-accent-tint via-surface to-gold-tint sm:-inset-5" aria-hidden="true" />
+            <div className="relative overflow-hidden bg-surface shadow-hard-lg ring-1 ring-line">
+              <HeroVideo locale={locale} labels={{ video: hero.video, play: hero.play, pause: hero.pause }} />
+            </div>
+          </div>
 
           <dl className="mx-auto mt-16 grid max-w-4xl gap-4 sm:grid-cols-3">
             {facts.map((f) => (
