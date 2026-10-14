@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="size" content="1600x1000" />
+<link rel="stylesheet" href="base.css" />
+<style>
+  .scene { background: linear-gradient(150deg, #e8f7ef 0%, #e4f3fb 50%, #faf8f4 100%); }
+  .check { display: flex; align-items: center; gap: 14px; font-size: 20px; font-weight: 600; padding: 11px 0; }
+  .check .label { white-space: nowrap; }
+  .check span { width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; }
+</style>
+</head>
+<body>
+<div class="scene">
+  <!-- Campus -->
+  <svg class="abs" style="left:610px;top:560px" width="440" height="340" viewBox="0 0 620 480">
+    <path d="M40 170 L310 40 L580 170Z" fill="#0b2d6b"/>
+    <rect x="60" y="170" width="500" height="26" fill="#12477f"/>
+    <g fill="#ffffff" stroke="#d7dde6" stroke-width="2">
+      <rect x="90" y="196" width="40" height="230"/><rect x="180" y="196" width="40" height="230"/><rect x="270" y="196" width="40" height="230"/>
+      <rect x="360" y="196" width="40" height="230"/><rect x="450" y="196" width="40" height="230"/>
+    </g>
+    <rect x="30" y="426" width="560" height="54" fill="#0b2d6b"/>
+    <circle cx="310" cy="118" r="26" fill="#f3d79a"/>
+  </svg>
+  <!-- Cap -->
+  <svg class="abs" style="left:665px;top:300px;transform:rotate(-8deg)" width="300" height="216" viewBox="0 0 360 260">
+    <path d="M10 90 L180 20 L350 90 L180 160Z" fill="#0b1f42"/>
+    <path d="M80 120 V190 C80 220 280 220 280 190 V120 L180 160Z" fill="#12305e"/>
+    <path d="M300 98 V180" stroke="#c99a3e" stroke-width="6"/><circle cx="300" cy="190" r="14" fill="#c99a3e"/>
+  </svg>
+
+  <!-- Offer letter -->
+  <div class="abs card" style="left:110px;top:150px;width:440px;padding:32px">
+    <div class="row"><span class="ico" style="width:58px;height:58px;border-radius:50%;background:#0b2d6b;color:#f3d79a"><i data-icon="graduation" data-size="28"></i></span>
+      <div><div class="label">University · UAE</div><div class="h" style="font-size:28px">Offer of admission</div></div></div>
+    <div class="col" style="gap:12px;margin-top:24px"><div class="ln" style="width:92%"></div><div class="ln" style="width:78%"></div><div class="ln" style="width:85%"></div></div>
+    <div class="row" style="margin-top:24px;gap:10px"><span class="chip" style="background:var(--blue-tint);color:var(--blue-strong)">Bachelor · Business</span><span class="chip" style="background:var(--gold-tint);color:#9a6f1f">Sept intake</span></div>
+  </div>
+
+  <!-- Documents -->
+  <div class="abs card" style="left:1050px;top:140px;width:440px">
+    <div class="h">Application</div>
+    <div style="margin-top:8px">
+      <div class="check"><span style="background:#e8f7ef;color:var(--green)"><i data-icon="check" data-size="17" data-stroke="2.6"></i></span>Passport</div>
+      <div class="check"><span style="background:#e8f7ef;color:var(--green)"><i data-icon="check" data-size="17" data-stroke="2.6"></i></span>Transcripts</div>
+      <div class="check"><span style="background:#e8f7ef;color:var(--green)"><i data-icon="check" data-size="17" data-stroke="2.6"></i></span>Admission</div>
+      <div class="check"><span style="background:var(--blue-tint);color:var(--blue)"><i data-icon="doc" data-size="17"></i></span>Student visa <span class="label" style="margin-left:auto">In progress</span></div>
+    </div>
+  </div>
+
+  <!-- Housing -->
+  <div class="abs card" style="left:1120px;top:520px;width:360px">
+    <div class="row"><span class="ico" style="width:52px;height:52px;background:var(--gold-tint);color:var(--gold)"><i data-icon="home"></i></span>
+      <div><div class="h" style="font-size:22px">Student housing</div><div class="label">10 min to campus</div></div></div>
+  </div>
+  <div class="abs card" style="left:150px;top:600px;width:360px">
+    <div class="row"><span class="ico" style="width:52px;height:52px;background:var(--blue-tint);color:var(--blue)"><i data-icon="mail"></i></span>
+      <div><div class="h" style="font-size:22px">Parents updated</div><div class="label">Weekly report sent</div></div></div>
+  </div>
+</div>
+<script src="base.js"></script>
+</body>
+</html>

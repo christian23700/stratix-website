@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="size" content="1600x1000" />
+<link rel="stylesheet" href="base.css" />
+<style>
+  .scene { background: linear-gradient(150deg, #faf2e1 0%, #faf8f4 55%, #e4f3fb 100%); }
+  .board { position: absolute; background: #0b1f42; border-radius: 22px; padding: 22px; box-shadow: 0 40px 80px -30px rgba(6,20,48,.55); }
+  .slide { background: #fff; border-radius: 12px; height: 100%; padding: 36px 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  .mod { display: flex; align-items: center; gap: 14px; padding: 12px 0; }
+  .mod .bar { flex: 1; }
+  .av { width: 44px; height: 44px; border-radius: 50%; border: 3px solid #fff; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; color: #fff; font-size: 16px; margin-left: -10px; }
+</style>
+</head>
+<body>
+<div class="scene">
+  <!-- Presentation board -->
+  <div class="board" style="left:110px;top:110px;width:860px;height:540px">
+    <div class="slide">
+      <div>
+        <span class="chip" style="background:var(--gold-tint);color:#9a6f1f">Module 2</span>
+        <div style="font-size:44px;font-weight:800;line-height:1.05;margin-top:18px">Import from<br/>Dubai</div>
+        <div class="col" style="gap:12px;margin-top:26px"><div class="ln" style="width:90%"></div><div class="ln" style="width:70%"></div><div class="ln" style="width:80%"></div></div>
+      </div>
+      <svg viewBox="0 0 320 300" width="100%" height="100%">
+        <g fill="#cfe8f6"><rect x="10" y="180" width="44" height="100" rx="6"/><rect x="74" y="140" width="44" height="140" rx="6"/><rect x="138" y="160" width="44" height="120" rx="6"/></g>
+        <g fill="#1593d0"><rect x="202" y="90" width="44" height="190" rx="6"/><rect x="266" y="40" width="44" height="240" rx="6"/></g>
+        <path d="M30 170 L96 128 L160 146 L224 76 L288 26" fill="none" stroke="#c99a3e" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+  <div class="abs" style="left:510px;top:650px;width:60px;height:130px;background:#0b1f42"></div>
+  <div class="abs" style="left:410px;top:775px;width:260px;height:16px;border-radius:8px;background:#0b1f42"></div>
+
+  <!-- Progress -->
+  <div class="abs card" style="left:1050px;top:140px;width:440px">
+    <div class="row" style="justify-content:space-between"><div class="h">Your course</div><span class="chip" style="background:#e8f7ef;color:var(--green)">68%</span></div>
+    <div style="margin-top:12px">
+      <div class="mod"><span class="ico" style="width:40px;height:40px;background:#e8f7ef;color:var(--green)"><i data-icon="check" data-size="18" data-stroke="2.6"></i></span><div class="bar" style="background:var(--green)"></div></div>
+      <div class="mod"><span class="ico" style="width:40px;height:40px;background:var(--blue-tint);color:var(--blue)"><i data-icon="play" data-size="18"></i></span><div class="bar" style="background:linear-gradient(90deg,var(--blue) 60%,#e9edf3 60%)"></div></div>
+      <div class="mod"><span class="ico" style="width:40px;height:40px;background:#f1f3f6;color:var(--muted)"><i data-icon="lock" data-size="18"></i></span><div class="bar"></div></div>
+      <div class="mod"><span class="ico" style="width:40px;height:40px;background:#f1f3f6;color:var(--muted)"><i data-icon="lock" data-size="18"></i></span><div class="bar"></div></div>
+    </div>
+  </div>
+
+  <!-- Certificate -->
+  <div class="abs card" style="left:1100px;top:500px;width:400px;padding:30px;background:#fffdf8;border:2px solid #f3d79a">
+    <div class="row" style="justify-content:space-between"><div><div class="label">Certificate</div><div class="h" style="font-size:26px">Completed</div></div>
+      <div style="width:72px;height:72px;border-radius:50%;background:radial-gradient(circle,#f3d79a,#c99a3e);display:flex;align-items:center;justify-content:center;color:#5a3e10"><i data-icon="star" data-size="34"></i></div></div>
+    <div class="col" style="gap:10px;margin-top:20px"><div class="ln" style="width:80%"></div><div class="ln" style="width:60%"></div></div>
+  </div>
+
+  <div class="abs card" style="left:690px;top:720px;width:360px;padding:20px 24px">
+    <div class="row"><div style="padding-left:10px;display:flex"><span class="av" style="background:#1593d0">AN</span><span class="av" style="background:#c99a3e">JB</span><span class="av" style="background:#22a06b">ME</span><span class="av" style="background:#c792ea">SK</span></div>
+      <div><div class="h" style="font-size:22px">24 learners</div><div class="label">Live session</div></div></div>
+  </div>
+</div>
+<script src="base.js"></script>
+</body>
+</html>

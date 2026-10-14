@@ -1,0 +1,37 @@
+/* Shared design kit for Stratix marketing visuals (rendered to PNG by scripts/render-visuals.mjs). */
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;600;700&display=block");
+
+:root {
+  --navy: #0b2d6b; --navy-deep: #061430; --ink: #0b1f42; --ink-soft: #3d4c66; --muted: #6b778c;
+  --blue: #1593d0; --blue-strong: #0b75aa; --blue-tint: #e4f3fb;
+  --gold: #c99a3e; --gold-soft: #e8c77f; --gold-tint: #faf2e1;
+  --canvas: #faf8f4; --line: #e2ded6; --white: #fff;
+  --green: #22a06b; --red: #e5484d;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1600px; height: 1000px; }
+body { font-family: "Bricolage Grotesque", system-ui, sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased; }
+.scene { position: relative; width: 1600px; height: 1000px; overflow: hidden; }
+.abs { position: absolute; }
+
+.card { background: #fff; border-radius: 22px; box-shadow: 0 30px 60px -24px rgba(6, 20, 48, .35), 0 0 0 1px rgba(11, 31, 66, .06); padding: 26px; }
+.hard { box-shadow: 10px 10px 0 rgba(0, 0, 0, .16), 0 0 0 1px rgba(11, 31, 66, .06); border-radius: 0; }
+.glass { background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .22); backdrop-filter: blur(14px); border-radius: 22px; color: #fff; }
+.pill { display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; border-radius: 999px; font-weight: 600; font-size: 22px; background: #fff; box-shadow: 0 16px 30px -14px rgba(6, 20, 48, .35); }
+.chip { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; font-size: 18px; font-weight: 600; }
+.ico { display: inline-flex; align-items: center; justify-content: center; border-radius: 14px; flex-shrink: 0; }
+.row { display: flex; align-items: center; gap: 14px; }
+.col { display: flex; flex-direction: column; gap: 10px; }
+.label { font-size: 17px; color: var(--muted); font-weight: 500; }
+.big { font-size: 40px; font-weight: 800; letter-spacing: -.01em; }
+.h { font-weight: 700; font-size: 24px; }
+.bar { height: 12px; border-radius: 6px; background: #e9edf3; }
+.ln { height: 10px; border-radius: 5px; background: #e6eaf0; }
+.dot { width: 14px; height: 14px; border-radius: 50%; }
+.skyline { -webkit-mask: url("assets/skyline.svg") bottom / 100% 100% no-repeat; mask: url("assets/skyline.svg") bottom / 100% 100% no-repeat; }
+.phone { position: absolute; width: 330px; height: 680px; border-radius: 48px; background: #0d0f14; padding: 12px; box-shadow: 0 50px 90px -30px rgba(0, 0, 0, .6); }
+.phone > .screen { width: 100%; height: 100%; border-radius: 38px; overflow: hidden; position: relative; background: #fff; }
+.phone > .screen::before { content: ""; position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 96px; height: 28px; border-radius: 20px; background: #0d0f14; z-index: 5; }
+.browser { position: absolute; border-radius: 18px; overflow: hidden; background: #fff; box-shadow: 0 40px 80px -30px rgba(6, 20, 48, .55); }
+.browser > .top { height: 44px; background: #eef1f5; display: flex; align-items: center; gap: 8px; padding: 0 18px; }
+.browser > .top i { width: 13px; height: 13px; border-radius: 50%; display: block; }

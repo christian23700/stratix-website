@@ -1,3 +1,5 @@
+@import "./theme.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,22 +13,21 @@ html {
 }
 
 body {
-  background-color: #F4F7FA;
-  color: #0A1930;
+  background-color: rgb(var(--canvas));
+  color: rgb(var(--ink));
 }
 
 ::selection {
-  background-color: #00D4E5;
-  color: #060F1F;
+  background-color: rgb(var(--accent));
+  color: #fff;
 }
 
 .focus-ring {
   outline: none;
 }
 .focus-ring:focus-visible {
-  outline: 2px solid #00D4E5;
+  outline: 2px solid rgb(var(--accent));
   outline-offset: 3px;
-  border-radius: 4px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -40,11 +41,11 @@ body {
 
 .container-x {
   width: 100%;
-  max-width: 1240px;
+  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 @media (min-width: 768px) {
@@ -54,11 +55,12 @@ body {
   }
 }
 
-.eyebrow {
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  font-size: 0.75rem;
-  font-weight: 600;
+/* Genuka-style soft wash behind the hero */
+.hero-wash {
+  background:
+    radial-gradient(60% 50% at 15% 0%, rgb(var(--accent-tint)) 0%, transparent 70%),
+    radial-gradient(50% 45% at 90% 10%, rgb(var(--gold-tint)) 0%, transparent 70%),
+    rgb(var(--canvas));
 }
 
 .text-balance {
@@ -67,4 +69,17 @@ body {
 
 [dir="rtl"] .rtl-flip {
   transform: scaleX(-1);
+}
+
+/* Native <details> accordion: hide the default marker */
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Arabic: swap the display face too */
+[dir="rtl"] .font-display {
+  font-family: var(--font-display-ar), sans-serif;
 }

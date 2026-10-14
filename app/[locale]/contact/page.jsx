@@ -1,71 +1,106 @@
 import { getDictionary } from "@/lib/get-dictionary";
 import { locales } from "@/lib/i18n-config";
+import { company, products } from "@/lib/company";
+import PageHero from "@/components/ui/PageHero";
 import ContactForm from "@/components/ContactForm";
-import AppointmentSection from "@/components/AppointmentSection";
+import Icon from "@/components/ui/Icon";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-export default function ContactPage({ params }) {
+export function generateMetadata({ params }) {
+  const dict = getDictionary(params.locale);
+  return { title: dict.nav.contact, description: dict.contact.hero.lead };
+}
+
+export default function ContactPage({ params, searchParams }) {
   const { locale } = params;
   const dict = getDictionary(locale);
-  const { contact } = dict;
+  const c = dict.contact;
+
+  const direct = [
+    { icon: "phone", label: c.direct.whatsapp, value: company.phone, href: company.whatsappUrl, ltr: true },
+    { icon: "mail", label: c.direct.email, value: company.email, href: `mailto:${company.email}` },
+    { icon: "cart", label: c.direct.channel, value: "WhatsApp Channel", href: company.whatsappChannel },
+    { icon: "pin", label: c.direct.location, value: c.direct.hours }
+  ];
 
   return (
     <>
-      <section className="bg-navy-deep">
-        <div className="container-x py-20 sm:py-24">
-          <span className="eyebrow text-cyan">{contact.eyebrow}</span>
-          <h1 className="mt-4 font-display text-3xl sm:text-4xl md:text-5xl text-mist-100 max-w-2xl leading-tight text-balance">
-            {contact.title}
-          </h1>
-          <p className="mt-5 text-mist-100/70 max-w-xl leading-relaxed">{contact.intro}</p>
-        </div>
-      </section>
+      <PageHero badge={c.hero.badge} title={c.hero.title} lead={c.hero.lead} />
 
-      <section className="container-x py-16 sm:py-20 grid lg:grid-cols-[1.3fr_1fr] gap-10 items-start">
-        <ContactForm dict={dict} />
+      <section className="container-x grid items-start gap-10 pb-20 sm:pb-24 lg:grid-cols-[1.5fr_1fr]">
+        <ContactForm dict={dict} locale={locale} defaultTopic={searchParams?.topic} />
 
-        <div className="space-y-6">
-          <AppointmentSection dict={dict} />
+        <aside className="space-y-6">
+          <div className="bg-surface p-7 ring-1 ring-line">
+            <h2 className="font-display text-lg font-bold text-ink">{c.direct.title}</h2>
+            <ul className="mt-5 space-y-4">
+              {direct.map((d) => (
+                <li key={d.label} className="flex gap-3">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center bg-accent-tint text-accent">
+                    <Icon name={d.icon} size={18} />
+                  </span>
+                  <div className="min-w-0 text-sm">
+                    <p className="text-ink-muted">{d.label}</p>
+                    {d.href ? (
+                      <a
+                        href={d.href}
+                        target={d.href.startsWith("http") ? "_blank" : undefined}
+                        rel="noopener noreferrer"
+                        className="focus-ring break-words font-semibold text-ink hover:text-accent"
+                        dir={d.ltr ? "ltr" : undefined}
+                      >
+                        {d.value}
+                      </a>
+                    ) : (
+                      <p className="font-semibold text-ink">{d.value}</p>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-          <div className="rounded-3xl bg-white p-7 sm:p-8 ring-1 ring-navy/5">
-            <h3 className="font-display text-lg text-navy">{contact.direct.title}</h3>
-            <ul className="mt-4 space-y-3 text-sm">
-              <li className="flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-cyan/10 shrink-0">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M4 6h16v12H4z" stroke="#0B93A3" strokeWidth="1.6" />
-                    <path d="M4 7l8 6 8-6" stroke="#0B93A3" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </span>
-                <a href={`mailto:${contact.direct.email}`} className="focus-ring text-slate-dark hover:text-navy break-all">
-                  {contact.direct.email}
+          <div className="bg-surface p-7 ring-1 ring-line">
+            <p className="text-sm text-ink-muted">{dict.footer.partner}</p>
+            <h2 className="font-display text-lg font-bold text-ink">{company.partner.name}</h2>
+            <ul className="mt-3 space-y-1.5 text-sm">
+              <li className="flex items-center gap-2 text-ink-soft">
+                <Icon name="pin" size={16} className="text-ink-muted" />
+                {company.partner.city}
+              </li>
+              <li className="flex items-center gap-2">
+                <Icon name="phone" size={16} className="text-ink-muted" />
+                <a href={company.partner.phoneUrl} className="focus-ring font-semibold text-ink hover:text-accent" dir="ltr">
+                  {company.partner.phone}
                 </a>
               </li>
-              <li className="flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-cyan/10 shrink-0">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.33 4.97L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2z" stroke="#0B93A3" strokeWidth="1.5" />
-                  </svg>
-                </span>
-                <a href="https://wa.me/971553910708" className="focus-ring text-slate-dark hover:text-navy" dir="ltr">
-                  {contact.direct.whatsapp}
+              <li className="flex items-center gap-2">
+                <Icon name="mail" size={16} className="text-ink-muted" />
+                <a href={`mailto:${company.partner.email}`} className="focus-ring font-semibold text-ink hover:text-accent">
+                  {company.partner.email}
                 </a>
-              </li>
-              <li className="flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-cyan/10 shrink-0">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M12 22s7-6.1 7-12a7 7 0 10-14 0c0 5.9 7 12 7 12z" stroke="#0B93A3" strokeWidth="1.5" />
-                    <circle cx="12" cy="10" r="2.4" stroke="#0B93A3" strokeWidth="1.5" />
-                  </svg>
-                </span>
-                <span className="text-slate-dark">{contact.direct.location}</span>
               </li>
             </ul>
           </div>
-        </div>
+
+          <div className="bg-surface p-7 ring-1 ring-line">
+            <h2 className="font-display text-lg font-bold text-ink">{c.productSupport.title}</h2>
+            <p className="mt-2 text-sm text-ink-soft">{c.productSupport.text}</p>
+            <ul className="mt-4 space-y-2 text-sm">
+              {Object.values(products).map((p) => (
+                <li key={p.name} className="flex justify-between gap-3">
+                  <span className="text-ink-muted">{p.name}</span>
+                  <a href={`mailto:${p.support}`} className="focus-ring font-semibold text-ink hover:text-accent">
+                    {p.support}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </aside>
       </section>
     </>
   );

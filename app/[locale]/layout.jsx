@@ -1,23 +1,18 @@
-import { Space_Grotesk, Inter, Noto_Kufi_Arabic, IBM_Plex_Sans_Arabic } from "next/font/google";
+import { Bricolage_Grotesque, Noto_Kufi_Arabic, IBM_Plex_Sans_Arabic } from "next/font/google";
 import { notFound } from "next/navigation";
 import { locales, localeMeta } from "@/lib/i18n-config";
 import { getDictionary } from "@/lib/get-dictionary";
+import { company } from "@/lib/company";
 import LocaleAttributes from "@/components/LocaleAttributes";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-display",
-  display: "swap"
-});
-
-const inter = Inter({
+// Genuka uses Bricolage Grotesque for both headings and text.
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-body",
+  variable: "--font-display",
   display: "swap"
 });
 
@@ -42,8 +37,19 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const dict = getDictionary(params.locale);
   return {
-    title: dict.meta.title,
-    description: dict.meta.description
+    metadataBase: new URL(company.siteUrl),
+    title: { default: dict.meta.title, template: `%s | Stratix` },
+    description: dict.meta.description,
+    alternates: {
+      languages: Object.fromEntries(locales.map((l) => [l, `/${l}`]))
+    },
+    openGraph: {
+      title: dict.meta.title,
+      description: dict.meta.description,
+      siteName: "Stratix",
+      locale: params.locale,
+      type: "website"
+    }
   };
 }
 
@@ -59,12 +65,13 @@ export default function LocaleLayout({ children, params }) {
     <div
       dir={dir}
       className={[
-        spaceGrotesk.variable,
-        inter.variable,
+        bricolage.variable,
         notoKufiArabic.variable,
         plexArabic.variable,
+        // --font-body follows the display face, like Genuka
+        "[--font-body:var(--font-display)]",
         isAr ? "font-body-ar" : "font-body",
-        "min-h-screen flex flex-col bg-mist"
+        "flex min-h-screen flex-col bg-canvas text-ink"
       ].join(" ")}
     >
       <LocaleAttributes locale={locale} dir={dir} />

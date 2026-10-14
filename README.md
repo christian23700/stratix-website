@@ -1,87 +1,75 @@
-# Stratix Digital Solutions — Site Web Officiel
+# Stratix — Site Web Officiel
 
-Site vitrine multilingue (EN / FR / AR) développé avec **Next.js 14** (App Router) et **Tailwind CSS**, conforme au cahier des charges CDC-WEB-2026-V1.
+Site vitrine multilingue (EN / FR / AR) de **Stratix Digital Solutions FZ-LLC**, en partenariat avec **MboaSoft Solutions Cameroun**.
+Next.js 14 (App Router) + Tailwind CSS, thème inspiré de la structure de genuka.com.
 
-## Démarrage rapide
+Contenu couvert :
+- **Services** : logiciels & apps (avec MboaSoft), e-commerce Dubaï ⇄ Afrique (parfums, cosmétiques, abayas, sourcing), marketing en ligne, mobilité EAU, formations
+- **Mobilité EAU** : touristes, entreprises, étudiants — mise en relation avec le bon prestataire
+- **Produits partenaires** : MboaMeet et E-Farmer, produits de MboaSoft Solutions Cameroun (Douala · +237 698 92 44 16 · contact@mboasoft.com), + solutions ERP / LMS / MLM / boutiques
+- **Contact & support** : formulaire envoyé par e-mail via Nodemailer (server action `"use server"`)
+
+## Démarrage
 
 ```bash
 npm install
+cp .env.example .env.local   # puis renseignez SMTP_USER / SMTP_PASS
 npm run dev
 ```
 
-Le site est disponible sur `http://localhost:3000` (redirige automatiquement vers `/en`).
+Le site s'ouvre sur `http://localhost:3000` (redirige vers `/en`).
 
-## Build de production
+## Formulaire de contact (Nodemailer)
+
+- Action serveur : `app/actions/contact.js` — validation, anti-spam (champ piège + limite de 5 envois / 10 min par IP), e-mail HTML + texte, `Reply-To` = l'expéditeur.
+- Transport SMTP : `lib/mailer.js`, configuré par les variables de `.env.example`.
+- Gmail : activez la validation en 2 étapes puis créez un **mot de passe d'application** à utiliser comme `SMTP_PASS`.
+- Sujets du formulaire : `lib/contact-topics.js` (libellés dans les dictionnaires). `/contact?topic=support` présélectionne un sujet.
+
+## Thème (structure type Genuka)
+
+| Fichier | Rôle |
+|---|---|
+| `app/theme.css` | Jetons de couleur (RVB) — changez la palette ici uniquement |
+| `tailwind.config.js` | Mappe les jetons vers `bg-canvas`, `text-ink`, `bg-accent`, `shadow-hard`… |
+| `components/ui/` | Primitives : `Button`, `SectionHeader`, `Highlight`, `Steps`, `Faq`, `CtaBanner`, `PageHero`, `Icon` |
+
+Signature visuelle : barre de navigation flottante arrondie, mots clés en couleur d'accent dans les titres
+(écrire `[[mots]]` dans les dictionnaires), boutons plats à ombre décalée, police Bricolage Grotesque,
+pied de page sombre.
+
+## Visuels (services, solutions, produits partenaires)
+
+Les 14 images de `public/images/visuals/` sont générées à partir de compositions HTML/CSS :
+
+| Fichier source | Usage |
+|---|---|
+| `design/visuals/{software,ecommerce,marketing,mobility,training}.html` | Page Services + accueil |
+| `design/visuals/{tourists,businesses,students}.html` | Page Mobilité EAU |
+| `design/visuals/{erp,lms,mlm,shop}.html` | Solutions (page Produits partenaires) |
+| `design/visuals/partner-{mboameet,efarmer}.html` | Bannières MboaMeet et E-Farmer (thèmes de chaque produit) |
+
+Kit commun : `design/visuals/base.css` (jetons, cartes, téléphone, navigateur), `base.js` (icônes), `assets/`.
+Après modification d'une composition :
 
 ```bash
-npm run build
-npm run start
+npm run visuals              # tout régénérer
+npm run visuals -- software  # une seule image
 ```
 
-> Le build nécessite un accès Internet lors de la compilation car les polices (Space Grotesk, Inter, Noto Kufi Arabic, IBM Plex Sans Arabic) sont chargées via `next/font/google`.
-
-## Structure du projet
-
-```
-app/
-  [locale]/            → toutes les pages, dupliquées pour en / fr / ar
-    page.jsx            → Accueil
-    about/page.jsx       → À propos
-    services/page.jsx    → Nos Services (Software, E-commerce, Mobilité)
-    solutions/page.jsx   → Solutions (MLM, LMS, ERP)
-    contact/page.jsx     → Contact & prise de rendez-vous
-    layout.jsx           → Layout de la locale (polices, header, footer, RTL)
-  layout.jsx             → Layout racine (html/body)
-  page.jsx               → Redirection "/" → "/en"
-  sitemap.js / robots.js → SEO
-components/               → Header, Footer, formulaires, cartes, etc.
-lib/
-  dictionaries/{en,fr,ar}.js → Tout le contenu texte du site, par langue
-  i18n-config.js              → Liste des langues, direction RTL/LTR
-```
+Le rendu utilise Playwright (`playwright-core`, Chromium de `PLAYWRIGHT_BROWSERS_PATH` ou Chrome installé).
+La correspondance image ↔ section est dans `lib/visuals.js`.
 
 ## Modifier les textes
 
-Tout le contenu (titres, paragraphes, boutons, formulaires) se trouve dans
-`lib/dictionaries/en.js`, `fr.js` et `ar.js`. Modifiez directement ces fichiers
-pour changer un texte — la structure est identique dans les trois langues.
+Tout le contenu est dans `lib/dictionaries/en.js`, `fr.js`, `ar.js` (même structure).
+Coordonnées Stratix et MboaSoft, liens des produits partenaires : `lib/company.js`.
 
-## Connecter les intégrations tierces (à faire avant mise en ligne)
+## Avant la mise en ligne
 
-1. **Formulaires (`components/ContactForm.jsx`)** — actuellement un aperçu
-   statique. Reliez le `onSubmit` à votre CRM, HubSpot Forms, ou à un endpoint
-   API (`/api/lead` par exemple) pour recevoir réellement les demandes B2B et B2C.
-2. **Prise de rendez-vous (`components/AppointmentSection.jsx`)** — le bouton
-   "Ouvrir le module de rendez-vous" est prêt à recevoir votre lien Calendly ou
-   HubSpot Meetings (widget intégré ou redirection).
-3. **WhatsApp flottant (`components/WhatsAppButton.jsx`)** — déjà connecté au
-   numéro +971 55 391 0708 avec message pré-rempli, aucune action requise.
-4. **Domaine & sitemap** — remplacez `https://www.stratixdigitalsolutions.com`
-   dans `app/sitemap.js` et `app/robots.js` par le nom de domaine définitif.
-
-## Multilingue & RTL
-
-- Langue par défaut : **anglais** (`/en`)
-- Bascule disponible : **français** (`/fr`) et **arabe** (`/ar`)
-- Le mode RTL (arabe) est automatiquement appliqué (`dir="rtl"`) avec une
-  police arabe dédiée (Noto Kufi Arabic / IBM Plex Sans Arabic).
-
-## Design system
-
-| Rôle | Valeur |
-|---|---|
-| Navy Deep | `#0A1930` |
-| Navy (fond header/sections sombres) | `#060F1F` |
-| Cyan Électrique | `#00D4E5` |
-| Fond clair | `#F4F7FA` |
-| Police titres | Space Grotesk |
-| Police texte | Inter |
-
-## Déploiement
-
-Le projet est compatible avec tout hébergeur supportant Next.js (Vercel,
-Netlify, serveur Node.js). Certificat SSL à activer côté hébergeur/DNS.
+1. Renseigner les variables SMTP sur l'hébergeur.
+2. Vérifier le domaine dans `lib/company.js` (`siteUrl`), utilisé par le sitemap et robots.
+3. Les photos du catalogue Lattafa (dossier Stratix Business) n'ont pas été reprises : droits à vérifier avant usage.
 
 ---
-Stratix Digital Solutions FZ-LLC — Ras Al Khaimah, EAU
-stratixdigitalsolution@gmail.com · +971 55 391 0708
+Stratix Digital Solutions FZ-LLC — Ras Al Khaimah, EAU · stratixdigitalsolution@gmail.com · +971 55 391 0708

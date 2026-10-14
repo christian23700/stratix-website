@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="size" content="1600x1000" />
+<link rel="stylesheet" href="base.css" />
+<style>
+  .scene { background: radial-gradient(70% 80% at 70% 40%, #3a2c1a 0%, #1a140d 55%, #0f0c08 100%); }
+  .glow { position: absolute; border-radius: 50%; filter: blur(90px); }
+  .gold-text { background: linear-gradient(90deg, #f3d79a, #c99a3e); -webkit-background-clip: text; color: transparent; }
+  .loc { display: flex; align-items: center; gap: 12px; padding: 14px 22px; border-radius: 16px; background: rgba(255,255,255,.08); border: 1px solid rgba(232,199,127,.35); color: #fff; font-size: 22px; font-weight: 600; }
+  .loc small { display: block; font-size: 15px; color: rgba(255,255,255,.6); font-weight: 500; }
+  .step { display: flex; align-items: center; gap: 14px; font-size: 19px; font-weight: 600; }
+  .step span { width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; }
+  .thumb { width: 92px; height: 112px; border-radius: 14px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px; }
+</style>
+</head>
+<body>
+<div class="scene">
+  <div class="glow" style="width:600px;height:600px;background:#c99a3e;opacity:.28;left:560px;top:260px"></div>
+
+  <!-- Route Dubai → Douala -->
+  <svg class="abs" style="left:0;top:0" width="1600" height="1000">
+    <path id="route" d="M1350 170 C 1100 40, 520 60, 250 330" fill="none" stroke="#e8c77f" stroke-width="3" stroke-dasharray="4 14" stroke-linecap="round" opacity=".9"/>
+    <circle cx="1350" cy="170" r="10" fill="#e8c77f"/><circle cx="1350" cy="170" r="22" fill="none" stroke="#e8c77f" stroke-opacity=".4" stroke-width="2"/>
+    <circle cx="250" cy="330" r="10" fill="#e8c77f"/><circle cx="250" cy="330" r="22" fill="none" stroke="#e8c77f" stroke-opacity=".4" stroke-width="2"/>
+  </svg>
+  <div class="abs" style="left:770px;top:58px;transform:rotate(-12deg);color:#f3d79a"><i data-icon="plane" data-size="58" data-stroke="1.5" style="transform:scaleX(-1)"></i></div>
+  <div class="abs loc" style="left:1150px;top:205px"><i data-icon="pin" style="color:#e8c77f"></i><div>Dubai<small>United Arab Emirates</small></div></div>
+  <div class="abs loc" style="left:150px;top:370px"><i data-icon="pin" style="color:#e8c77f"></i><div>Douala<small>Cameroon · Africa</small></div></div>
+
+  <!-- Pedestal + bottles -->
+  <div class="abs" style="left:540px;top:820px;width:560px;height:90px;border-radius:50%;background:radial-gradient(closest-side,#5a4426,#2a2013 70%,transparent);"></div>
+  <svg class="abs" style="left:560px;top:420px" width="520" height="460" viewBox="0 0 520 460">
+    <defs>
+      <linearGradient id="cap" x1="0" x2="1"><stop offset="0" stop-color="#8a6527"/><stop offset=".45" stop-color="#f3d79a"/><stop offset="1" stop-color="#a77a30"/></linearGradient>
+      <linearGradient id="amber" x1="0" x2="1"><stop offset="0" stop-color="#7a3d0e"/><stop offset=".5" stop-color="#d7892f"/><stop offset="1" stop-color="#6e3509"/></linearGradient>
+      <linearGradient id="rose" x1="0" x2="1"><stop offset="0" stop-color="#6d2140"/><stop offset=".5" stop-color="#d86b8f"/><stop offset="1" stop-color="#5c1934"/></linearGradient>
+      <linearGradient id="night" x1="0" x2="1"><stop offset="0" stop-color="#0b1a3a"/><stop offset=".5" stop-color="#2f5aa8"/><stop offset="1" stop-color="#0a1633"/></linearGradient>
+    </defs>
+    <!-- left: rose -->
+    <g transform="translate(10 150)">
+      <rect x="52" y="0" width="56" height="58" rx="8" fill="url(#cap)"/><rect x="66" y="58" width="28" height="18" fill="#c99a3e"/>
+      <path d="M10 110 Q10 76 50 76 H110 Q150 76 150 110 V280 Q150 300 130 300 H30 Q10 300 10 280Z" fill="url(#rose)"/>
+      <rect x="26" y="96" width="10" height="170" rx="5" fill="#fff" opacity=".28"/>
+      <rect x="45" y="170" width="70" height="60" rx="6" fill="#1a140d" opacity=".55" stroke="#e8c77f" stroke-width="1.5"/>
+    </g>
+    <!-- center: amber, taller -->
+    <g transform="translate(170 40)">
+      <path d="M60 0 H120 L132 70 H48Z" fill="url(#cap)"/><rect x="74" y="70" width="32" height="22" fill="#c99a3e"/>
+      <path d="M0 140 Q0 92 50 92 H130 Q180 92 180 140 V390 Q180 410 160 410 H20 Q0 410 0 390Z" fill="url(#amber)"/>
+      <rect x="18" y="112" width="12" height="260" rx="6" fill="#fff" opacity=".3"/>
+      <rect x="40" y="220" width="100" height="84" rx="6" fill="#1a140d" opacity=".55" stroke="#e8c77f" stroke-width="1.5"/>
+      <text x="90" y="268" text-anchor="middle" font-family="Bricolage Grotesque" font-size="17" font-weight="700" letter-spacing="3" fill="#f3d79a">STRATIX</text>
+    </g>
+    <!-- right: night -->
+    <g transform="translate(370 120)">
+      <circle cx="70" cy="30" r="30" fill="url(#cap)"/><rect x="56" y="58" width="28" height="22" fill="#c99a3e"/>
+      <path d="M70 80 L140 160 V310 Q140 330 120 330 H20 Q0 330 0 310 V160Z" fill="url(#night)"/>
+      <rect x="16" y="170" width="10" height="130" rx="5" fill="#fff" opacity=".25"/>
+      <rect x="35" y="215" width="70" height="56" rx="6" fill="#1a140d" opacity=".55" stroke="#e8c77f" stroke-width="1.5"/>
+    </g>
+  </svg>
+
+  <!-- Order card -->
+  <div class="abs card" style="left:1130px;top:420px;width:380px">
+    <div class="row" style="justify-content:space-between"><div><div class="label">Order #2048</div><div class="h">Wholesale · 24 pcs</div></div>
+      <span class="ico" style="width:52px;height:52px;background:var(--gold-tint);color:var(--gold)"><i data-icon="bag"></i></span></div>
+    <div class="col" style="gap:16px;margin-top:22px">
+      <div class="step"><span style="background:#e8f7ef;color:var(--green)"><i data-icon="check" data-size="18" data-stroke="2.6"></i></span>Sourced in Dubai</div>
+      <div class="step"><span style="background:#e8f7ef;color:var(--green)"><i data-icon="check" data-size="18" data-stroke="2.6"></i></span>Shipped</div>
+      <div class="step" style="color:var(--gold)"><span style="background:var(--gold);color:#fff"><i data-icon="truck" data-size="18" data-stroke="2.2"></i></span>Out for delivery · Douala</div>
+    </div>
+  </div>
+
+  <!-- Catalogue card -->
+  <div class="abs card" style="left:110px;top:560px;width:400px">
+    <div class="row"><span class="ico" style="width:52px;height:52px;border-radius:50%;background:#25d366;color:#fff"><i data-icon="chat"></i></span>
+      <div><div class="h" style="font-size:22px">New catalogue</div><div class="label">Perfumes · Cosmetics · Abayas</div></div></div>
+    <div class="row" style="margin-top:20px;gap:12px">
+      <div class="thumb" style="background:linear-gradient(160deg,#f6e3c0,#d7892f)"><svg width="40" height="64" viewBox="0 0 40 64"><rect x="13" y="0" width="14" height="12" rx="2" fill="#a77a30"/><rect x="2" y="14" width="36" height="50" rx="8" fill="#7a3d0e" opacity=".85"/></svg></div>
+      <div class="thumb" style="background:linear-gradient(160deg,#f7dbe5,#d86b8f)"><svg width="40" height="64" viewBox="0 0 40 64"><circle cx="20" cy="8" r="8" fill="#a77a30"/><path d="M20 16 L38 34 V60 Q38 64 34 64 H6 Q2 64 2 60 V34Z" fill="#6d2140" opacity=".85"/></svg></div>
+      <div class="thumb" style="background:linear-gradient(160deg,#e3e0ea,#2b2b3a)"><svg width="54" height="90" viewBox="0 0 54 90"><path d="M27 2 a5 5 0 1 1 0 0.1 M27 8 V12 M8 22 L27 12 L46 22" stroke="#e8c77f" stroke-width="2" fill="none"/><path d="M14 22 H40 L52 40 L46 44 L42 34 L50 88 H4 L12 34 L8 44 L2 40Z" fill="#141018"/></svg></div>
+    </div>
+  </div>
+
+  <!-- Price tag -->
+  <div class="abs pill" style="left:820px;top:880px;background:linear-gradient(90deg,#f3d79a,#c99a3e);color:#1a140d"><i data-icon="star" data-size="22"></i> Direct factory prices</div>
+  <div class="abs pill" style="left:470px;top:880px"><i data-icon="shield" style="color:var(--green)"></i> 100% authentic</div>
+</div>
+<script src="base.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="size" content="1600x1000" />
+<link rel="stylesheet" href="base.css" />
+<style>
+  .scene { background: radial-gradient(80% 80% at 40% 40%, #12477f 0%, #0b2d6b 45%, #061430 100%); }
+  .node { position: absolute; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 8px; color: #fff; font-weight: 600; font-size: 16px; }
+  .node span { width: 74px; height: 74px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; border: 4px solid rgba(255,255,255,.85); box-shadow: 0 12px 24px -10px rgba(0,0,0,.6); }
+  .node.sm span { width: 56px; height: 56px; font-size: 17px; border-width: 3px; }
+</style>
+</head>
+<body>
+<div class="scene">
+  <svg class="abs" style="left:0;top:0" width="1600" height="1000" stroke="rgba(255,255,255,.35)" stroke-width="2.5" fill="none">
+    <path d="M560 170 V250 H330 V330 M560 250 V330 M560 250 H790 V330"/>
+    <path d="M330 400 V470 H220 V540 M330 470 H440 V540"/>
+    <path d="M560 400 V540"/>
+    <path d="M790 400 V470 H700 V540 M790 470 H880 V540"/>
+    <path d="M220 610 V680 H160 V740 M220 680 H280 V740 M880 610 V680 H820 V740 M880 680 H940 V740"/>
+  </svg>
+  <div class="node" style="left:560px;top:135px"><span style="background:#c99a3e;width:96px;height:96px;font-size:28px">YOU</span></div>
+  <div class="node" style="left:330px;top:365px"><span style="background:#1593d0">AK</span></div>
+  <div class="node" style="left:560px;top:365px"><span style="background:#22a06b">FN</span></div>
+  <div class="node" style="left:790px;top:365px"><span style="background:#a48af0">MB</span></div>
+  <div class="node sm" style="left:220px;top:575px"><span style="background:#1593d0">JT</span></div>
+  <div class="node sm" style="left:440px;top:575px"><span style="background:#1593d0">EO</span></div>
+  <div class="node sm" style="left:560px;top:575px"><span style="background:#22a06b">RK</span></div>
+  <div class="node sm" style="left:700px;top:575px"><span style="background:#a48af0">SN</span></div>
+  <div class="node sm" style="left:880px;top:575px"><span style="background:#a48af0">LD</span></div>
+  <div class="node sm" style="left:160px;top:770px"><span style="background:#0b75aa">+</span></div>
+  <div class="node sm" style="left:280px;top:770px"><span style="background:#0b75aa">+</span></div>
+  <div class="node sm" style="left:820px;top:770px"><span style="background:#7f68d0">+</span></div>
+  <div class="node sm" style="left:940px;top:770px"><span style="background:#7f68d0">+</span></div>
+
+  <div class="abs card" style="left:1080px;top:170px;width:420px">
+    <div class="row"><span class="ico" style="width:54px;height:54px;background:var(--gold-tint);color:var(--gold)"><i data-icon="wallet"></i></span><div><div class="label">Commission this month</div><div class="big">$1,240</div></div></div>
+    <div class="row" style="justify-content:space-between;margin-top:20px"><span class="label">Payout</span><span class="chip" style="background:#e8f7ef;color:var(--green)"><i data-icon="calendar" data-size="16"></i> Scheduled</span></div>
+  </div>
+  <div class="abs card" style="left:1120px;top:470px;width:380px">
+    <div class="h">Plan</div>
+    <div class="row" style="gap:10px;margin-top:14px;flex-wrap:wrap">
+      <span class="chip" style="background:var(--blue);color:#fff">Binary</span><span class="chip" style="background:#eef1f5;color:var(--ink-soft)">Unilevel</span><span class="chip" style="background:#eef1f5;color:var(--ink-soft)">Matrix</span><span class="chip" style="background:#eef1f5;color:var(--ink-soft)">Hybrid</span>
+    </div>
+  </div>
+  <div class="abs card" style="left:1080px;top:700px;width:420px;padding:20px 24px">
+    <div class="row"><span class="ico" style="width:50px;height:50px;background:var(--blue-tint);color:var(--blue)"><i data-icon="users"></i></span><div><div class="h" style="font-size:22px">1,842 distributors</div><div class="label">Real-time genealogy</div></div></div>
+  </div>
+</div>
+<script src="base.js"></script>
+</body>
+</html>
