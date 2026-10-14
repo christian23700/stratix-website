@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="size" content="1600x1000" />
+<link rel="stylesheet" href="base.css" />
+<style>
+  .scene { background: linear-gradient(160deg, #061430 0%, #0b2d6b 55%, #12477f 100%); }
+  .grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px); background-size: 80px 80px; }
+  .check { display: flex; align-items: center; gap: 14px; font-size: 20px; font-weight: 600; padding: 12px 0; border-bottom: 1px solid #eef1f5; }
+  .check .label { white-space: nowrap; }
+  .check span { width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; }
+  .av { width: 46px; height: 46px; border-radius: 50%; border: 3px solid #fff; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; color: #fff; font-size: 17px; margin-left: -12px; }
+</style>
+</head>
+<body>
+<div class="scene">
+  <div class="grid"></div>
+  <div class="abs skyline" style="left:0;bottom:0;width:1600px;height:420px;background:#1a5a99;opacity:.55"></div>
+
+  <!-- Trade licence -->
+  <div class="abs card" style="left:150px;top:130px;width:480px;padding:34px;background:#fffdf8">
+    <div class="row" style="justify-content:space-between">
+      <div><div class="label">United Arab Emirates</div><div class="h" style="font-size:30px">Trade licence</div></div>
+      <div style="width:84px;height:84px;border-radius:50%;background:radial-gradient(circle,#f3d79a,#c99a3e);display:flex;align-items:center;justify-content:center;color:#5a3e10;box-shadow:inset 0 0 0 6px rgba(255,255,255,.4)"><i data-icon="shield" data-size="40" data-stroke="1.8"></i></div>
+    </div>
+    <div class="col" style="gap:14px;margin-top:26px">
+      <div class="ln" style="width:90%"></div><div class="ln" style="width:72%"></div><div class="ln" style="width:80%"></div>
+    </div>
+    <div class="row" style="margin-top:28px;gap:10px">
+      <span class="chip" style="background:var(--blue-tint);color:var(--blue-strong)">Free zone</span>
+      <span class="chip" style="background:#e8f7ef;color:var(--green)"><i data-icon="check" data-size="16" data-stroke="2.6"></i> Approved</span>
+    </div>
+  </div>
+
+  <!-- Setup checklist -->
+  <div class="abs card" style="left:690px;top:200px;width:450px">
+    <div class="h">Company setup</div>
+    <div style="margin-top:10px">
+      <div class="check"><span style="background:#e8f7ef;color:var(--green)"><i data-icon="check" data-size="17" data-stroke="2.6"></i></span>Name reserved</div>
+      <div class="check"><span style="background:#e8f7ef;color:var(--green)"><i data-icon="check" data-size="17" data-stroke="2.6"></i></span>Licence issued</div>
+      <div class="check"><span style="background:#e8f7ef;color:var(--green)"><i data-icon="check" data-size="17" data-stroke="2.6"></i></span>Office space</div>
+      <div class="check" style="border:0"><span style="background:var(--gold-tint);color:var(--gold)"><i data-icon="wallet" data-size="17"></i></span>Bank account <span class="label" style="margin-left:auto">In progress</span></div>
+    </div>
+  </div>
+
+  <!-- Meeting -->
+  <div class="abs card" style="left:1170px;top:140px;width:330px">
+    <div class="row"><span class="ico" style="width:52px;height:52px;background:var(--blue-tint);color:var(--blue)"><i data-icon="calendar"></i></span>
+      <div><div class="h" style="font-size:22px">B2B meeting</div><div class="label">Trade fair · Dubai</div></div></div>
+    <div class="row" style="margin-top:18px;padding-left:12px">
+      <span class="av" style="background:#1593d0">AK</span><span class="av" style="background:#c99a3e">MN</span><span class="av" style="background:#22a06b">FD</span><span class="av" style="background:#0b2d6b">+4</span>
+    </div>
+  </div>
+
+  <!-- Sourcing -->
+  <div class="abs card" style="left:1170px;top:430px;width:330px">
+    <div class="row"><span class="ico" style="width:52px;height:52px;background:var(--gold-tint);color:var(--gold)"><i data-icon="truck"></i></span>
+      <div><div class="h" style="font-size:22px">Sourcing trip</div><div class="label">3 supplier quotes</div></div></div>
+    <div class="col" style="gap:10px;margin-top:16px">
+      <div class="bar" style="width:100%;background:linear-gradient(90deg,var(--gold) 82%,#eef1f5 82%)"></div>
+      <div class="bar" style="width:100%;background:linear-gradient(90deg,var(--gold) 64%,#eef1f5 64%)"></div>
+      <div class="bar" style="width:100%;background:linear-gradient(90deg,var(--gold) 47%,#eef1f5 47%)"></div>
+    </div>
+  </div>
+
+  <div class="abs pill" style="left:240px;top:560px"><i data-icon="building" style="color:var(--blue)"></i> Mainland · Free zone</div>
+  <div class="abs pill" style="left:700px;top:600px"><i data-icon="briefcase" style="color:var(--gold)"></i> PRO services</div>
+</div>
+<script src="base.js"></script>
+</body>
+</html>

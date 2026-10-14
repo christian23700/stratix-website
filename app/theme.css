@@ -1,0 +1,25 @@
+/*
+ * Stratix theme tokens.
+ * Layout and component structure follow genuka.com (floating pill nav,
+ * highlighted heading words, flat buttons with a hard offset shadow,
+ * warm canvas, dark footer). Colours are Stratix's own, taken from the logo.
+ * Values are space-separated RGB so Tailwind opacity modifiers work.
+ */
+:root {
+  --canvas: 250 248 244;      /* warm off-white page background */
+  --surface: 255 255 255;     /* cards, nav, form */
+  --ink: 11 31 66;            /* headings — logo navy */
+  --ink-soft: 61 76 102;      /* body copy */
+  --ink-muted: 107 119 140;   /* captions */
+  --brand: 11 45 107;         /* logo navy */
+  --brand-deep: 6 20 48;
+  --brand-tint: 232 238 248;
+  --accent: 21 147 208;       /* logo blue — highlights, primary buttons */
+  --accent-strong: 11 117 170;
+  --accent-tint: 228 243 251;
+  --gold: 201 154 62;         /* Dubai commerce accent */
+  --gold-tint: 250 242 225;
+  --line: 226 222 214;
+  --night: 17 17 16;          /* footer */
+  --shadow: 0 0 0;
+}

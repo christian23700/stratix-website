@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="size" content="1600x1000" />
+<link rel="stylesheet" href="base.css" />
+<style>
+  .scene { background: linear-gradient(135deg, #061430 0%, #0b2d6b 58%, #0b75aa 100%); }
+  .grid { position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.12) 1.2px, transparent 1.2px); background-size: 34px 34px; }
+  .glow { position: absolute; border-radius: 50%; filter: blur(80px); }
+  .side { width: 190px; background: #0b1f42; padding: 26px 20px; display: flex; flex-direction: column; gap: 18px; }
+  .side .ln { background: rgba(255,255,255,.14); }
+  .side .on { background: var(--blue); }
+  .kpi { flex: 1; border: 1px solid #edf0f4; border-radius: 16px; padding: 18px; }
+  .kpi b { display: block; font-size: 32px; font-weight: 800; margin-top: 6px; }
+  .up { color: var(--green); font-size: 16px; font-weight: 700; }
+  .code { font-family: "Cascadia Code", Consolas, monospace; font-size: 20px; line-height: 1.75; }
+  .k { color: #c792ea; } .f { color: #82aaff; } .s { color: #c3e88d; } .c { color: #6b7a99; } .n { color: #f78c6c; } .p { color: #e6edf7; }
+  .m-item { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-bottom: 1px solid #eef1f5; }
+</style>
+</head>
+<body>
+<div class="scene">
+  <div class="grid"></div>
+  <div class="glow" style="width:520px;height:520px;background:#1593d0;opacity:.45;right:-120px;top:-140px"></div>
+  <div class="glow" style="width:420px;height:420px;background:#1593d0;opacity:.18;left:-100px;bottom:-160px"></div>
+
+  <!-- Web app -->
+  <div class="browser" style="left:120px;top:120px;width:920px;height:600px">
+    <div class="top"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i>
+      <span style="margin-left:18px;background:#fff;border-radius:8px;padding:5px 16px;font-size:15px;color:var(--muted);font-family:Inter">app.your-business.com</span></div>
+    <div style="display:flex;height:556px">
+      <div class="side">
+        <img src="assets/stratix-mark.png" style="width:40px;height:40px;filter:brightness(1.6)" />
+        <div class="ln on" style="width:80%"></div><div class="ln" style="width:65%"></div><div class="ln" style="width:72%"></div>
+        <div class="ln" style="width:58%"></div><div class="ln" style="width:68%"></div>
+      </div>
+      <div style="flex:1;padding:28px 30px">
+        <div class="row" style="justify-content:space-between">
+          <div><div class="label">Overview</div><div class="h" style="font-size:30px">Dashboard</div></div>
+          <span class="chip" style="background:var(--blue-tint);color:var(--blue-strong)"><i data-icon="bolt" data-size="18"></i> Live</span>
+        </div>
+        <div class="row" style="margin-top:22px;gap:16px;align-items:stretch">
+          <div class="kpi"><span class="label">Orders</span><b>1,284</b><span class="up">▲ 12%</span></div>
+          <div class="kpi"><span class="label">Revenue</span><b>$48.2k</b><span class="up">▲ 8%</span></div>
+          <div class="kpi"><span class="label">Users</span><b>9,630</b><span class="up">▲ 21%</span></div>
+        </div>
+        <svg width="640" height="250" viewBox="0 0 640 250" style="margin-top:22px">
+          <defs><linearGradient id="a" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#1593d0" stop-opacity=".35"/><stop offset="1" stop-color="#1593d0" stop-opacity="0"/></linearGradient></defs>
+          <g stroke="#eef1f5"><line x1="0" x2="640" y1="50" y2="50"/><line x1="0" x2="640" y1="120" y2="120"/><line x1="0" x2="640" y1="190" y2="190"/></g>
+          <path d="M0 200 C60 190 90 150 150 160 S250 110 310 120 S420 60 480 80 S580 30 640 20 V250 H0Z" fill="url(#a)"/>
+          <path d="M0 200 C60 190 90 150 150 160 S250 110 310 120 S420 60 480 80 S580 30 640 20" fill="none" stroke="#1593d0" stroke-width="4"/>
+          <path d="M0 225 C80 215 140 200 210 205 S330 170 400 180 S540 140 640 130" fill="none" stroke="#c99a3e" stroke-width="3" stroke-dasharray="8 8"/>
+          <circle cx="480" cy="80" r="9" fill="#fff" stroke="#1593d0" stroke-width="4"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Code -->
+  <div class="abs card code" style="left:70px;top:640px;width:600px;background:#0d1b33;color:#e6edf7;padding:26px 30px">
+    <div><span class="c">// checkout.ts</span></div>
+    <div><span class="k">const</span> <span class="p">order</span> = <span class="k">await</span> <span class="f">api</span>.<span class="f">post</span>(<span class="s">"/orders"</span>, cart);</div>
+    <div><span class="k">await</span> <span class="f">notify</span>(order.<span class="p">customer</span>, <span class="s">"whatsapp"</span>);</div>
+    <div><span class="k">return</span> { status: <span class="n">201</span>, id: order.<span class="p">id</span> };</div>
+  </div>
+
+  <!-- Mobile app -->
+  <div class="phone" style="left:1120px;top:150px">
+    <div class="screen">
+      <div style="background:linear-gradient(135deg,#0b2d6b,#1593d0);padding:64px 26px 70px;color:#fff">
+        <div style="font-size:18px;opacity:.75">Balance</div>
+        <div style="font-size:42px;font-weight:800">$12,480</div>
+      </div>
+      <div style="margin:-44px 18px 0;background:#fff;border-radius:20px;padding:18px;box-shadow:0 18px 30px -16px rgba(6,20,48,.35);display:flex;justify-content:space-around">
+        <span class="ico" style="width:52px;height:52px;background:var(--blue-tint);color:var(--blue)"><i data-icon="cart"></i></span>
+        <span class="ico" style="width:52px;height:52px;background:var(--gold-tint);color:var(--gold)"><i data-icon="truck"></i></span>
+        <span class="ico" style="width:52px;height:52px;background:#e8f7ef;color:var(--green)"><i data-icon="chart"></i></span>
+      </div>
+      <div style="padding:14px 24px">
+        <div class="m-item"><span class="ico" style="width:44px;height:44px;background:var(--blue-tint);color:var(--blue)"><i data-icon="bag" data-size="20"></i></span><div style="flex:1"><div class="ln" style="width:70%"></div><div class="ln" style="width:45%;margin-top:8px"></div></div><b style="font-size:18px">+$240</b></div>
+        <div class="m-item"><span class="ico" style="width:44px;height:44px;background:var(--gold-tint);color:var(--gold)"><i data-icon="truck" data-size="20"></i></span><div style="flex:1"><div class="ln" style="width:60%"></div><div class="ln" style="width:40%;margin-top:8px"></div></div><b style="font-size:18px">+$95</b></div>
+        <div class="m-item"><span class="ico" style="width:44px;height:44px;background:#e8f7ef;color:var(--green)"><i data-icon="users" data-size="20"></i></span><div style="flex:1"><div class="ln" style="width:75%"></div><div class="ln" style="width:35%;margin-top:8px"></div></div><b style="font-size:18px">+$310</b></div>
+        <div class="m-item"><span class="ico" style="width:44px;height:44px;background:var(--blue-tint);color:var(--blue)"><i data-icon="wallet" data-size="20"></i></span><div style="flex:1"><div class="ln" style="width:55%"></div><div class="ln" style="width:38%;margin-top:8px"></div></div><b style="font-size:18px">+$180</b></div>
+      </div>
+      <div style="position:absolute;left:0;right:0;bottom:0;height:78px;border-top:1px solid #eef1f5;display:flex;justify-content:space-around;align-items:center;padding:0 22px 6px;color:#9aa5b8">
+        <i data-icon="home"></i><i data-icon="search"></i><span class="ico" style="width:50px;height:50px;border-radius:50%;background:var(--blue);color:#fff"><i data-icon="cart"></i></span><i data-icon="chat"></i><i data-icon="users"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating tags -->
+  <div class="abs pill" style="left:1010px;top:96px"><i data-icon="code" style="color:var(--blue)"></i> Web</div>
+  <div class="abs pill" style="left:1140px;top:860px"><svg width="22" height="22" viewBox="0 0 24 24"><path fill="#0b1f42" d="M16.4 12.6c0-2.5 2-3.6 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.9-1.7 0-3.3 1-4.2 2.5-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8 1.6 0 2 .8 3.3.8 1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9-.1 0-2.8-1-2.8-4.2zM13.9 5.1c.7-.9 1.2-2 1-3.2-1 .1-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3.1 1.1.1 2.2-.6 2.9-1.4z"/></svg> iOS</div>
+  <div class="abs pill" style="left:1290px;top:860px"><svg width="22" height="22" viewBox="0 0 24 24"><path fill="#22a06b" d="M17.5 9.5l1.6-2.8a.4.4 0 00-.7-.4l-1.7 2.9A10 10 0 0012 8.2c-1.7 0-3.3.4-4.7 1L5.6 6.3a.4.4 0 00-.7.4l1.6 2.8A8.7 8.7 0 002 16.5h20a8.7 8.7 0 00-4.5-7zM7.5 13.6a1 1 0 110-2 1 1 0 010 2zm9 0a1 1 0 110-2 1 1 0 010 2z"/></svg> Android</div>
+  <div class="abs card" style="left:720px;top:770px;width:330px;padding:20px 22px">
+    <div class="row"><span class="ico" style="width:46px;height:46px;background:#e8f7ef;color:var(--green)"><i data-icon="check" data-stroke="2.6"></i></span>
+      <div><div class="h" style="font-size:22px">Deployed</div><div class="label">99.9% uptime · SSL</div></div></div>
+  </div>
+</div>
+<script src="base.js"></script>
+</body>
+</html>

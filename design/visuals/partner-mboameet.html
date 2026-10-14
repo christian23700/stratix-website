@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="size" content="1600x1000" />
+<link rel="stylesheet" href="base.css" />
+<style>
+  /* MboaMeet theme: #EC2065 → #A21CAF → #2563EB, DM Sans, dark UI */
+  body { font-family: "DM Sans", system-ui, sans-serif; }
+  .scene { background: #0d0b16; }
+  .glow { position: absolute; border-radius: 50%; filter: blur(110px); }
+  .grad { background: linear-gradient(120deg, #EC2065, #A21CAF 55%, #2563EB); }
+  .gtext { background: linear-gradient(90deg, #ff4f8b, #c45cff 60%, #6c8cff); -webkit-background-clip: text; color: transparent; }
+  .feat { display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px; border-radius: 14px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); color: #fff; font-size: 20px; font-weight: 500; }
+  .feat span { color: #ff6b9c; display: inline-flex; }
+  .live { position: absolute; inset: 0; background:
+    radial-gradient(60% 40% at 30% 30%, #ff6b9c 0%, transparent 70%),
+    radial-gradient(60% 50% at 80% 70%, #6c8cff 0%, transparent 70%),
+    linear-gradient(160deg, #3a0f3f, #120c2a); }
+  .bubble { padding: 12px 16px; border-radius: 18px; font-size: 16px; max-width: 78%; line-height: 1.35; }
+  .heart { position: absolute; color: #ff4f8b; }
+  .av { width: 40px; height: 40px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; color: #fff; font-size: 15px; flex-shrink: 0; }
+</style>
+</head>
+<body>
+<div class="scene">
+  <div class="glow" style="width:620px;height:620px;background:#EC2065;opacity:.35;left:820px;top:-160px"></div>
+  <div class="glow" style="width:620px;height:620px;background:#2563EB;opacity:.35;left:1150px;top:500px"></div>
+  <div class="glow" style="width:500px;height:500px;background:#A21CAF;opacity:.3;left:-120px;top:600px"></div>
+
+  <!-- Copy -->
+  <div class="abs" style="left:110px;top:150px;width:640px">
+    <div class="row" style="gap:18px"><img src="assets/mboameet-logo.png" style="width:84px;height:84px;border-radius:22px" />
+      <div style="color:#fff;font-size:56px;font-weight:700;letter-spacing:-.02em">MboaMeet</div></div>
+    <div style="margin-top:40px;font-size:76px;line-height:1.02;font-weight:700;letter-spacing:-.03em;color:#fff">Connect. Create.<br/><span class="gtext">Share. Earn.</span></div>
+    <div style="margin-top:26px;font-size:24px;color:rgba(255,255,255,.7);line-height:1.45;max-width:560px">The social platform built for African creators and their communities.</div>
+    <div class="row" style="flex-wrap:wrap;gap:12px;margin-top:36px;max-width:600px">
+      <span class="feat"><span><i data-icon="play" data-size="20"></i></span>Reels</span>
+      <span class="feat"><span><i data-icon="live" data-size="20"></i></span>Live</span>
+      <span class="feat"><span><i data-icon="chat" data-size="20"></i></span>Chat &amp; calls</span>
+      <span class="feat"><span><i data-icon="bag" data-size="20"></i></span>Stores</span>
+      <span class="feat"><span><i data-icon="wallet" data-size="20"></i></span>Wallet</span>
+      <span class="feat"><span><i data-icon="lock" data-size="20"></i></span>Exclusive</span>
+    </div>
+    <div style="margin-top:44px;font-size:17px;color:rgba(255,255,255,.45);letter-spacing:.08em;text-transform:uppercase">by MboaSoft Solutions</div>
+  </div>
+
+  <!-- Phone 1: live -->
+  <div class="phone" style="left:850px;top:150px;width:330px;height:700px;transform:rotate(-4deg)">
+    <div class="screen" style="background:#120c2a">
+      <div class="live"></div>
+      <div class="abs" style="left:18px;right:18px;top:56px;display:flex;align-items:center;gap:10px;z-index:2">
+        <span class="av grad">AM</span><div style="color:#fff;font-weight:700;font-size:16px">Amina · creator</div>
+        <span style="margin-left:auto;background:#EC2065;color:#fff;font-size:13px;font-weight:700;padding:4px 10px;border-radius:8px">LIVE</span>
+      </div>
+      <span class="abs" style="left:18px;top:104px;z-index:2;color:#fff;font-size:14px;background:rgba(0,0,0,.35);padding:4px 10px;border-radius:8px">● 2.4k watching</span>
+      <div class="heart" style="right:30px;bottom:300px"><i data-icon="heart" data-size="34" data-stroke="2.2"></i></div>
+      <div class="heart" style="right:62px;bottom:360px;opacity:.7"><i data-icon="heart" data-size="26" data-stroke="2.2"></i></div>
+      <div class="heart" style="right:24px;bottom:420px;opacity:.45"><i data-icon="heart" data-size="22" data-stroke="2.2"></i></div>
+      <div class="abs" style="left:16px;right:70px;bottom:96px;display:flex;flex-direction:column;gap:10px;z-index:2">
+        <div class="bubble" style="background:rgba(0,0,0,.4);color:#fff"><b>Kevin</b> 🔥🔥</div>
+        <div class="bubble" style="background:rgba(0,0,0,.4);color:#fff"><b>Sandra</b> sent a gift 🎁</div>
+      </div>
+      <div class="abs" style="left:16px;right:16px;bottom:30px;height:48px;border-radius:24px;background:rgba(255,255,255,.14);z-index:2;display:flex;align-items:center;justify-content:flex-end;padding:0 6px">
+        <span class="ico grad" style="width:38px;height:38px;border-radius:50%;color:#fff"><i data-icon="gift" data-size="20"></i></span></div>
+    </div>
+  </div>
+
+  <!-- Phone 2: chat -->
+  <div class="phone" style="left:1200px;top:240px;width:310px;height:640px;transform:rotate(5deg)">
+    <div class="screen" style="background:#fff">
+      <div style="padding:60px 18px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #f0f0f4">
+        <span class="av" style="background:#A21CAF">JK</span><div><div style="font-weight:700;font-size:16px;color:#12151C">Junior K.</div><div style="font-size:13px;color:#22a06b">online</div></div>
+        <span style="margin-left:auto;color:#EC2065"><i data-icon="phone" data-size="22"></i></span></div>
+      <div style="padding:16px;display:flex;flex-direction:column;gap:10px">
+        <div class="bubble" style="background:#f3f3f7;color:#12151C;align-self:flex-start">Your last reel was 🔥</div>
+        <div class="bubble grad" style="color:#fff;align-self:flex-end">Thanks! New drop in my store tonight</div>
+        <div class="bubble" style="background:#f3f3f7;color:#12151C;align-self:flex-start">Count me in 🙌</div>
+        <div style="align-self:flex-end;display:flex;align-items:center;gap:10px;background:#FAE8F9;border-radius:16px;padding:10px 14px">
+          <span style="color:#EC2065"><i data-icon="gift" data-size="24"></i></span><b style="color:#12151C;font-size:15px">50 tokens</b></div>
+      </div>
+      <div class="abs" style="left:14px;right:14px;bottom:22px;height:46px;border-radius:23px;background:#f3f3f7;display:flex;align-items:center;justify-content:space-between;padding:0 6px 0 16px;color:#9aa0aa;font-size:15px">Message…<span class="ico grad" style="width:36px;height:36px;border-radius:50%;color:#fff"><i data-icon="bolt" data-size="18"></i></span></div>
+    </div>
+  </div>
+
+  <!-- Floating stat -->
+  <div class="abs" style="left:780px;top:760px;background:#fff;border-radius:18px;padding:16px 20px;box-shadow:0 30px 60px -20px rgba(0,0,0,.6);display:flex;align-items:center;gap:14px">
+    <span class="ico grad" style="width:48px;height:48px;color:#fff"><i data-icon="users"></i></span>
+    <div><div style="font-weight:700;font-size:20px;color:#12151C">+320 subscribers</div><div style="font-size:15px;color:#616568">Creator membership</div></div>
+  </div>
+</div>
+<script src="base.js"></script>
+</body>
+</html>

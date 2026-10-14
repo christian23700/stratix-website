@@ -10,31 +10,22 @@ function swapLocale(pathname, next) {
   return "/" + parts.join("/");
 }
 
-export default function LanguageSwitcher({ locale, variant = "light" }) {
+export default function LanguageSwitcher({ locale, tone = "light" }) {
   const pathname = usePathname();
-
-  const base =
-    variant === "light"
-      ? "text-mist-100/80 hover:text-cyan"
-      : "text-navy/70 hover:text-navy";
+  const idle = tone === "dark" ? "text-white/60 hover:text-white" : "text-ink-muted hover:text-ink";
 
   return (
-    <div className="flex items-center gap-1 text-xs font-semibold" role="group" aria-label="Language selector">
-      {locales.map((code, i) => (
-        <span key={code} className="flex items-center">
-          <Link
-            href={swapLocale(pathname, code)}
-            className={`focus-ring px-1.5 py-1 rounded transition-colors ${
-              code === locale ? "text-cyan" : base
-            }`}
-            aria-current={code === locale ? "true" : undefined}
-          >
-            {localeMeta[code].short}
-          </Link>
-          {i < locales.length - 1 && (
-            <span className={variant === "light" ? "text-mist-100/30" : "text-navy/20"}>/</span>
-          )}
-        </span>
+    <div className="flex items-center text-xs font-semibold" role="group" aria-label="Language">
+      {locales.map((code) => (
+        <Link
+          key={code}
+          href={swapLocale(pathname, code)}
+          className={`focus-ring rounded px-1.5 py-1 transition-colors ${code === locale ? "text-accent" : idle}`}
+          aria-current={code === locale ? "true" : undefined}
+          lang={code}
+        >
+          {localeMeta[code].short}
+        </Link>
       ))}
     </div>
   );

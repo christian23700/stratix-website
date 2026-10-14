@@ -1,60 +1,62 @@
 /** @type {import('tailwindcss').Config} */
+
+// Colours come from CSS variables defined in app/theme.css, so the whole
+// palette can be re-skinned from one file without touching components.
+const token = (name) => `rgb(var(--${name}) / <alpha-value>)`;
+
 module.exports = {
-  content: [
-    "./app/**/*.{js,jsx}",
-    "./components/**/*.{js,jsx}"
-  ],
+  content: ["./app/**/*.{js,jsx}", "./components/**/*.{js,jsx}"],
   theme: {
     extend: {
       colors: {
-        navy: {
-          DEFAULT: "#0A1930",
-          deep: "#060F1F",
-          light: "#122645"
+        canvas: token("canvas"),
+        surface: token("surface"),
+        ink: {
+          DEFAULT: token("ink"),
+          soft: token("ink-soft"),
+          muted: token("ink-muted")
         },
-        cyan: {
-          DEFAULT: "#00D4E5",
-          soft: "#5FE8F2",
-          dim: "#0B93A3"
+        brand: {
+          DEFAULT: token("brand"),
+          deep: token("brand-deep"),
+          tint: token("brand-tint")
         },
-        mist: {
-          DEFAULT: "#F4F7FA",
-          100: "#FFFFFF",
-          200: "#EEF2F6",
-          300: "#DDE4EC"
+        accent: {
+          DEFAULT: token("accent"),
+          strong: token("accent-strong"),
+          tint: token("accent-tint")
         },
-        slate: {
-          DEFAULT: "#5B6B82",
-          dark: "#33415A"
-        }
+        gold: {
+          DEFAULT: token("gold"),
+          tint: token("gold-tint")
+        },
+        line: token("line"),
+        night: token("night")
       },
       fontFamily: {
-        display: ["var(--font-display)", "sans-serif"],
-        body: ["var(--font-body)", "sans-serif"],
+        display: ["var(--font-display)", "system-ui", "sans-serif"],
+        body: ["var(--font-body)", "system-ui", "sans-serif"],
         "display-ar": ["var(--font-display-ar)", "sans-serif"],
         "body-ar": ["var(--font-body-ar)", "sans-serif"]
       },
-      backgroundImage: {
-        "circuit": "radial-gradient(circle at 1px 1px, rgba(0,212,229,0.18) 1px, transparent 0)"
+      boxShadow: {
+        hard: "4px 4px 0 0 rgb(var(--shadow) / 0.22)",
+        "hard-lg": "8px 8px 0 0 rgb(var(--shadow) / 0.22)",
+        float: "0 10px 40px -12px rgb(var(--shadow) / 0.25)"
       },
       keyframes: {
-        traceflow: {
-          "0%": { strokeDashoffset: "1000" },
-          "100%": { strokeDashoffset: "0" }
-        },
-        floatslow: {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-10px)" }
-        },
         fadeup: {
           "0%": { opacity: "0", transform: "translateY(16px)" },
           "100%": { opacity: "1", transform: "translateY(0)" }
+        },
+        orbit: {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" }
         }
       },
       animation: {
-        traceflow: "traceflow 3.5s ease-in-out infinite alternate",
-        floatslow: "floatslow 6s ease-in-out infinite",
-        fadeup: "fadeup 0.7s ease-out both"
+        fadeup: "fadeup 0.7s ease-out both",
+        orbit: "orbit 60s linear infinite"
       }
     }
   },

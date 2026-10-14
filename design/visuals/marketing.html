@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="size" content="1600x1000" />
+<link rel="stylesheet" href="base.css" />
+<style>
+  .scene { background: linear-gradient(140deg, #e4f3fb 0%, #faf8f4 55%, #faf2e1 100%); }
+  .blob { position: absolute; border-radius: 50%; filter: blur(70px); }
+  .reel { position: absolute; inset: 0; background: url("assets/perfume-cover.png") center / cover; }
+  .reel::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 55%, rgba(0,0,0,.65)); }
+  .act { display: flex; flex-direction: column; align-items: center; gap: 4px; color: #fff; font-size: 15px; font-weight: 600; }
+  .act span { width: 50px; height: 50px; border-radius: 50%; background: rgba(0,0,0,.35); display: flex; align-items: center; justify-content: center; }
+  .barcol { width: 34px; border-radius: 8px 8px 0 0; }
+</style>
+</head>
+<body>
+<div class="scene">
+  <div class="blob" style="width:520px;height:520px;background:#1593d0;opacity:.18;left:420px;top:180px"></div>
+
+  <!-- Phone with reel -->
+  <div class="phone" style="left:560px;top:130px;width:360px;height:740px">
+    <div class="screen" style="background:#000">
+      <div class="reel"></div>
+      <div class="abs" style="right:16px;bottom:150px;display:flex;flex-direction:column;gap:18px;z-index:2">
+        <div class="act"><span style="color:#ff4d6d"><i data-icon="heart" data-size="26" data-stroke="2"></i></span>12.4k</div>
+        <div class="act"><span><i data-icon="chat" data-size="24"></i></span>836</div>
+        <div class="act"><span><i data-icon="bolt" data-size="24"></i></span>2.1k</div>
+      </div>
+      <div class="abs" style="left:20px;right:90px;bottom:40px;color:#fff;z-index:2">
+        <div class="row" style="gap:10px"><img src="assets/stratix-mark.png" style="width:36px;height:36px;border-radius:50%;background:#fff;padding:4px"/><b style="font-size:18px">@stratix</b>
+          <span style="border:1.5px solid #fff;border-radius:8px;padding:2px 10px;font-size:14px">Follow</span></div>
+        <div style="height:10px;width:85%;background:rgba(255,255,255,.75);border-radius:5px;margin-top:14px"></div>
+        <div style="height:10px;width:60%;background:rgba(255,255,255,.5);border-radius:5px;margin-top:8px"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Analytics -->
+  <div class="abs card" style="left:1010px;top:150px;width:470px">
+    <div class="row" style="justify-content:space-between"><div><div class="label">Reach · last 30 days</div><div class="big">248k</div></div>
+      <span class="chip" style="background:#e8f7ef;color:var(--green)">▲ 38%</span></div>
+    <div class="row" style="align-items:flex-end;gap:16px;height:180px;margin-top:20px">
+      <div class="barcol" style="height:40%;background:#cfe8f6"></div><div class="barcol" style="height:55%;background:#cfe8f6"></div>
+      <div class="barcol" style="height:48%;background:#cfe8f6"></div><div class="barcol" style="height:70%;background:#cfe8f6"></div>
+      <div class="barcol" style="height:62%;background:#cfe8f6"></div><div class="barcol" style="height:84%;background:#8fcbe9"></div>
+      <div class="barcol" style="height:100%;background:var(--blue)"></div><div class="barcol" style="height:92%;background:var(--blue)"></div>
+    </div>
+  </div>
+
+  <!-- Campaign -->
+  <div class="abs card" style="left:1060px;top:520px;width:420px">
+    <div class="row" style="justify-content:space-between">
+      <div class="row"><span class="ico" style="width:52px;height:52px;background:var(--gold-tint);color:var(--gold)"><i data-icon="megaphone"></i></span>
+        <div><div class="h" style="font-size:22px">Ad campaign</div><div class="label">Active</div></div></div>
+      <span style="width:58px;height:32px;border-radius:16px;background:var(--green);position:relative"><span style="position:absolute;right:4px;top:4px;width:24px;height:24px;border-radius:50%;background:#fff"></span></span>
+    </div>
+    <div class="row" style="gap:10px;margin-top:20px;flex-wrap:wrap">
+      <span class="chip" style="background:var(--blue-tint);color:var(--blue-strong)"><i data-icon="pin" data-size="16"></i> Douala</span>
+      <span class="chip" style="background:var(--blue-tint);color:var(--blue-strong)"><i data-icon="pin" data-size="16"></i> Dubai</span>
+      <span class="chip" style="background:var(--blue-tint);color:var(--blue-strong)"><i data-icon="pin" data-size="16"></i> Abidjan</span>
+    </div>
+  </div>
+
+  <!-- Left notifications -->
+  <div class="abs card" style="left:110px;top:240px;width:380px;padding:20px 22px">
+    <div class="row"><span class="ico" style="width:50px;height:50px;border-radius:50%;background:#fde7ec;color:#e5484d"><i data-icon="users"></i></span>
+      <div><div class="h" style="font-size:22px">+1,240 followers</div><div class="label">This week</div></div></div>
+  </div>
+  <div class="abs card" style="left:150px;top:420px;width:380px;padding:20px 22px">
+    <div class="row"><span class="ico" style="width:50px;height:50px;border-radius:50%;background:#25d366;color:#fff"><i data-icon="chat"></i></span>
+      <div><div class="h" style="font-size:22px">New lead</div><div class="label">via WhatsApp · 2 min ago</div></div></div>
+  </div>
+  <div class="abs card" style="left:90px;top:600px;width:380px;padding:20px 22px">
+    <div class="row"><span class="ico" style="width:50px;height:50px;border-radius:50%;background:var(--blue-tint);color:var(--blue)"><i data-icon="search"></i></span>
+      <div style="flex:1"><div class="h" style="font-size:22px">Google #1</div><div class="label">Search ranking</div></div></div>
+  </div>
+  <div class="abs pill" style="left:780px;top:880px;background:var(--ink);color:#fff"><i data-icon="play" data-size="20"></i> Reels · Ads · SEO</div>
+</div>
+<script src="base.js"></script>
+</body>
+</html>

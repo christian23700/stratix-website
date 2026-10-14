@@ -1,8 +1,21 @@
+import Image from "next/image";
 import Link from "next/link";
 import { getDictionary } from "@/lib/get-dictionary";
 import { locales } from "@/lib/i18n-config";
-import CircuitField from "@/components/CircuitField";
-import PillarCard from "@/components/PillarCard";
+import { company } from "@/lib/company";
+import ButtonLink from "@/components/ui/Button";
+import Highlight, { plain } from "@/components/ui/Highlight";
+import { serviceVisuals, visualSize } from "@/lib/visuals";
+import SectionHeader from "@/components/ui/SectionHeader";
+import Steps from "@/components/ui/Steps";
+import Faq from "@/components/ui/Faq";
+import CtaBanner from "@/components/ui/CtaBanner";
+import Icon from "@/components/ui/Icon";
+import ProductCard from "@/components/ProductCard";
+import ServiceOrbit from "@/components/ServiceOrbit";
+
+// Visual shown for each showcase item, in order.
+const showcaseVisual = ["ecommerce", "software", "mobility"];
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -11,110 +24,175 @@ export function generateStaticParams() {
 export default function HomePage({ params }) {
   const { locale } = params;
   const dict = getDictionary(locale);
-  const { hero, pillars, about, common } = dict;
+  const { hero, facts, suite, showcase, products, mobility, steps, faq, cta } = dict.home;
+  const l = (path) => `/${locale}${path}`;
 
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-navy-deep">
-        <CircuitField className="absolute inset-0 h-full w-full opacity-70" />
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/10 via-navy-deep/60 to-navy-deep" />
-
-        <div className="container-x relative py-24 sm:py-28 md:py-36">
-          <div className="max-w-3xl animate-fadeup">
-            <span className="eyebrow inline-flex items-center gap-2 text-cyan">
-              <span className="h-1.5 w-1.5 rounded-full bg-cyan" />
-              {hero.eyebrow}
-            </span>
-            <h1 className="mt-5 font-display text-4xl sm:text-5xl md:text-6xl text-mist-100 leading-[1.08] text-balance">
-              {hero.title}
-            </h1>
-            <p className="mt-6 text-base sm:text-lg text-mist-100/70 max-w-xl leading-relaxed">
-              {hero.subtitle}
-            </p>
-
-            <div className="mt-9 flex flex-wrap gap-3.5">
-              <Link
-                href={`/${locale}/contact`}
-                className="focus-ring inline-flex items-center rounded-full bg-cyan px-7 py-3.5 text-sm font-semibold text-navy-deep hover:bg-cyan-soft transition-colors"
-              >
-                {hero.ctaPrimary}
-              </Link>
-              <Link
-                href={`/${locale}/about`}
-                className="focus-ring inline-flex items-center rounded-full border border-mist-100/25 px-7 py-3.5 text-sm font-semibold text-mist-100 hover:bg-white/5 transition-colors"
-              >
-                {hero.ctaSecondary}
-              </Link>
-            </div>
+      <section className="hero-wash">
+        <div className="container-x pb-16 pt-36 text-center sm:pb-20 sm:pt-44">
+          <span className="inline-flex items-center gap-2 rounded-full bg-surface px-4 py-1.5 text-sm font-medium text-ink-soft ring-1 ring-line">
+            <span className="h-2 w-2 rounded-full bg-accent" aria-hidden="true" />
+            {hero.badge}
+          </span>
+          <h1 className="mx-auto mt-6 max-w-4xl animate-fadeup font-display text-[2.6rem] font-bold leading-[1.05] text-ink sm:text-6xl md:text-7xl text-balance">
+            <Highlight text={hero.title} />
+          </h1>
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-ink-soft">{hero.lead}</p>
+          <div className="mt-9 flex flex-wrap justify-center gap-4">
+            <ButtonLink href={l("/contact")} size="lg">
+              {hero.primary}
+            </ButtonLink>
+            <ButtonLink href={l("/services")} variant="secondary" size="lg">
+              {hero.secondary}
+            </ButtonLink>
           </div>
+          <p className="mt-6 text-sm text-ink-muted">{hero.note}</p>
 
-          <dl className="mt-16 sm:mt-20 grid grid-cols-3 gap-6 max-w-xl border-t border-white/10 pt-8">
-            {hero.stats.map((s) => (
-              <div key={s.label}>
-                <dt className="sr-only">{s.label}</dt>
-                <dd className="font-display text-2xl sm:text-3xl text-cyan">{s.value}</dd>
-                <dd className="mt-1 text-xs text-mist-100/55 leading-snug">{s.label}</dd>
+          <dl className="mx-auto mt-16 grid max-w-4xl gap-4 sm:grid-cols-3">
+            {facts.map((f) => (
+              <div key={f.label} className="bg-surface p-5 text-start shadow-hard ring-1 ring-line">
+                <dt className="font-display text-2xl font-bold text-brand" dir="auto">
+                  {f.value}
+                </dt>
+                <dd className="mt-1 text-sm leading-snug text-ink-soft">{f.label}</dd>
               </div>
             ))}
           </dl>
         </div>
       </section>
 
-      {/* Pillars */}
-      <section className="container-x py-20 sm:py-24">
-        <div className="max-w-2xl">
-          <span className="eyebrow text-cyan-dim">{dict.services.eyebrow}</span>
-          <h2 className="mt-3 font-display text-3xl sm:text-4xl text-navy text-balance">{pillars.heading}</h2>
-          <p className="mt-4 text-slate leading-relaxed">{pillars.intro}</p>
-        </div>
-
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
-          {pillars.items.map((item, i) => (
-            <PillarCard
-              key={item.title}
-              index={i + 1}
-              tag={item.tag}
-              title={item.title}
-              description={item.description}
-              href={`/${locale}${item.href}`}
-              readMore={common.readMore}
-            />
-          ))}
+      {/* Service suite orbit */}
+      <section className="bg-gradient-to-b from-canvas to-accent-tint/60 py-20 sm:py-28">
+        <div className="container-x">
+          <SectionHeader badge={suite.badge} title={suite.title} lead={suite.lead} />
+          <ServiceOrbit items={suite.items} locale={locale} />
         </div>
       </section>
 
-      {/* Credibility strip */}
-      <section className="bg-mist-200 border-y border-navy/5">
-        <div className="container-x py-16 sm:py-20 grid md:grid-cols-[1fr_1.3fr] gap-10 md:gap-16 items-center">
+      {/* Showcase */}
+      <section className="bg-surface py-20 sm:py-28">
+        <div className="container-x grid items-center gap-12 lg:grid-cols-[1fr_1.1fr]">
           <div>
-            <span className="eyebrow text-cyan-dim">{about.eyebrow}</span>
-            <h2 className="mt-3 font-display text-2xl sm:text-3xl text-navy leading-snug text-balance">
-              {about.credibility.title}
+            <h2 className="font-display text-3xl font-bold leading-tight text-ink sm:text-4xl md:text-5xl text-balance">
+              <Highlight text={showcase.title} />
             </h2>
-            <Link
-              href={`/${locale}/about`}
-              className="focus-ring mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-navy hover:text-cyan-dim transition-colors"
-            >
-              {common.readMore}
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="rtl-flip" aria-hidden="true">
-                <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </Link>
+            <ul className="mt-10 space-y-4">
+              {showcase.items.map((item) => (
+                <li key={item.title}>
+                  <Link
+                    href={l(item.href)}
+                    className="focus-ring group flex gap-4 border-s-2 border-line p-4 transition-colors hover:border-accent hover:bg-accent-tint/50"
+                  >
+                    <span className="mt-0.5 text-accent">
+                      <Icon name={item.icon} size={22} />
+                    </span>
+                    <span>
+                      <span className="block font-display text-lg font-semibold text-ink">
+                        <Highlight text={item.title} />
+                      </span>
+                      <span className="mt-1 block text-[15px] leading-relaxed text-ink-soft">{item.text}</span>
+                    </span>
+                    <Icon name="arrow" size={18} className="rtl-flip ms-auto mt-1 shrink-0 text-ink-muted transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
-
-          <ul className="grid sm:grid-cols-2 gap-4">
-            {about.credibility.points.map((point) => (
-              <li key={point} className="flex gap-3 rounded-2xl bg-white p-5 ring-1 ring-navy/5">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="mt-0.5 shrink-0" aria-hidden="true">
-                  <path d="M5 13l4 4L19 7" stroke="#0B93A3" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                <span className="text-sm text-slate-dark leading-relaxed">{point}</span>
-              </li>
-            ))}
-          </ul>
+          <div className="relative">
+            <div className="absolute -inset-4 -z-0 rounded-3xl bg-gold-tint" aria-hidden="true" />
+            <div className="relative grid grid-cols-2 gap-4">
+              {showcase.items.map((item, i) => (
+                <Image
+                  key={item.href}
+                  src={serviceVisuals[showcaseVisual[i]]}
+                  alt={plain(item.title)}
+                  width={visualSize[0]}
+                  height={visualSize[1]}
+                  sizes={i ? "(min-width: 1024px) 270px, 45vw" : "(min-width: 1024px) 560px, 100vw"}
+                  className={`w-full ring-1 ring-line ${i ? "shadow-hard" : "col-span-2 shadow-hard-lg"}`}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </section>
+
+      {/* Products */}
+      <section className="py-20 sm:py-28">
+        <div className="container-x">
+          <SectionHeader badge={products.badge} title={products.title} lead={products.lead} />
+          <div className="mt-14 grid gap-6 lg:grid-cols-2">
+            <ProductCard id="mboameet" dict={dict} locale={locale} compact />
+            <ProductCard id="efarmer" dict={dict} locale={locale} compact />
+          </div>
+          <div className="mt-10 text-center">
+            <ButtonLink href={l("/products")} variant="secondary">
+              {products.cta}
+            </ButtonLink>
+          </div>
+        </div>
+      </section>
+
+      {/* UAE mobility */}
+      <section className="bg-brand py-20 text-white sm:py-28">
+        <div className="container-x">
+          <div className="mx-auto max-w-3xl text-center">
+            <span className="text-xs font-semibold uppercase tracking-[0.14em] text-gold">[ {mobility.badge} ]</span>
+            <h2 className="mt-3 font-display text-3xl font-bold leading-tight sm:text-4xl md:text-5xl text-balance">
+              <Highlight text={mobility.title} className="text-gold" />
+            </h2>
+            <p className="mt-4 text-lg leading-relaxed text-white/75">{mobility.lead}</p>
+          </div>
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
+            {dict.mobility.audiences.map((a) => (
+              <Link
+                key={a.id}
+                href={l(`/mobility#${a.id}`)}
+                className="focus-ring group bg-white/5 p-7 ring-1 ring-white/10 transition hover:bg-white/10"
+              >
+                <span className="flex h-11 w-11 items-center justify-center bg-gold text-night">
+                  <Icon name={a.icon} size={22} />
+                </span>
+                <h3 className="mt-5 font-display text-2xl font-semibold">{a.title}</h3>
+                <p className="mt-2 text-white/70">{a.lead}</p>
+                <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold">
+                  {dict.common.learnMore}
+                  <Icon name="arrow" size={16} className="rtl-flip transition-transform group-hover:translate-x-1" />
+                </span>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-10 text-center">
+            <ButtonLink href={l("/mobility")} variant="gold">
+              {mobility.cta}
+            </ButtonLink>
+          </div>
+        </div>
+      </section>
+
+      {/* Steps */}
+      <section className="bg-gradient-to-b from-gold-tint/70 to-canvas py-20 sm:py-28">
+        <div className="container-x">
+          <Steps title={steps.title} steps={steps.steps} />
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-20 sm:py-24">
+        <div className="container-x">
+          <SectionHeader badge={faq.badge} title={faq.title} lead={faq.lead} />
+          <Faq groups={dict.faq} />
+        </div>
+      </section>
+
+      <CtaBanner
+        title={cta.title}
+        text={cta.text}
+        primary={{ href: l("/contact"), label: cta.primary }}
+        secondary={{ href: company.whatsappUrl, label: cta.secondary }}
+      />
     </>
   );
 }

@@ -1,69 +1,94 @@
-import Link from "next/link";
 import { getDictionary } from "@/lib/get-dictionary";
 import { locales } from "@/lib/i18n-config";
+import { company } from "@/lib/company";
+import PageHero from "@/components/ui/PageHero";
+import SectionHeader from "@/components/ui/SectionHeader";
+import CtaBanner from "@/components/ui/CtaBanner";
+import Icon from "@/components/ui/Icon";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
+export function generateMetadata({ params }) {
+  const dict = getDictionary(params.locale);
+  return { title: dict.nav.about, description: dict.about.hero.lead };
+}
+
+function ContactLines({ contact }) {
+  const phoneHref = contact.phoneUrl || contact.whatsappUrl;
+  return (
+    <ul className="mt-4 space-y-1.5 border-t border-line pt-4 text-sm">
+      <li className="flex items-center gap-2 text-ink-soft">
+        <Icon name="phone" size={16} className="text-ink-muted" />
+        <a href={phoneHref} className="focus-ring hover:text-accent" dir="ltr">
+          {contact.phone}
+        </a>
+      </li>
+      <li className="flex items-center gap-2 text-ink-soft">
+        <Icon name="mail" size={16} className="text-ink-muted" />
+        <a href={`mailto:${contact.email}`} className="focus-ring hover:text-accent">
+          {contact.email}
+        </a>
+      </li>
+    </ul>
+  );
+}
+
 export default function AboutPage({ params }) {
   const { locale } = params;
   const dict = getDictionary(locale);
-  const { about, common } = dict;
+  const a = dict.about;
 
   return (
     <>
-      <section className="bg-navy-deep">
-        <div className="container-x py-20 sm:py-24">
-          <span className="eyebrow text-cyan">{about.eyebrow}</span>
-          <h1 className="mt-4 font-display text-3xl sm:text-4xl md:text-5xl text-mist-100 max-w-3xl leading-tight text-balance">
-            {about.title}
-          </h1>
-          <p className="mt-6 text-mist-100/70 max-w-2xl leading-relaxed text-base sm:text-lg">{about.lead}</p>
-        </div>
-      </section>
+      <PageHero badge={a.hero.badge} title={a.hero.title} lead={a.hero.lead} />
 
-      <section className="container-x py-16 sm:py-20 grid md:grid-cols-[1.3fr_1fr] gap-12">
+      <section className="container-x grid gap-12 py-16 sm:py-20 lg:grid-cols-[1.2fr_1fr]">
         <div className="space-y-5">
-          {about.body.map((p, i) => (
-            <p key={i} className="text-slate-dark leading-relaxed text-[15px] sm:text-base">
+          {a.story.map((p, i) => (
+            <p key={i} className="text-lg leading-relaxed text-ink-soft">
               {p}
             </p>
           ))}
         </div>
-
-        <div className="space-y-4">
-          {about.values.map((v) => (
-            <div key={v.title} className="rounded-2xl bg-mist-200 p-6 ring-1 ring-navy/5">
-              <h3 className="font-display text-lg text-navy">{v.title}</h3>
-              <p className="mt-2 text-sm text-slate leading-relaxed">{v.description}</p>
+        <div className="space-y-5">
+          {a.partners.map((p, i) => (
+            <div key={p.name} className="bg-surface p-7 shadow-hard ring-1 ring-line">
+              <span className={`text-xs font-semibold uppercase tracking-[0.14em] ${i ? "text-gold" : "text-accent"}`}>
+                {p.place}
+              </span>
+              <h2 className="mt-2 font-display text-xl font-bold text-ink">{p.name}</h2>
+              <p className="mt-2 leading-relaxed text-ink-soft">{p.role}</p>
+              <ContactLines contact={i ? company.partner : company} />
             </div>
           ))}
         </div>
       </section>
 
-      <section className="bg-navy text-mist-100">
-        <div className="container-x py-16 sm:py-20">
-          <h2 className="font-display text-2xl sm:text-3xl text-balance max-w-xl">{about.credibility.title}</h2>
-          <ul className="mt-8 grid sm:grid-cols-2 gap-4">
-            {about.credibility.points.map((point) => (
-              <li key={point} className="flex gap-3 rounded-2xl bg-white/5 p-5 ring-1 ring-white/10">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="mt-0.5 shrink-0" aria-hidden="true">
-                  <path d="M5 13l4 4L19 7" stroke="#5FE8F2" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                <span className="text-sm text-mist-100/80 leading-relaxed">{point}</span>
-              </li>
+      <section className="bg-surface py-20 sm:py-24">
+        <div className="container-x">
+          <SectionHeader title={a.values.title} />
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {a.values.items.map((v) => (
+              <div key={v.title} className="bg-canvas p-6 ring-1 ring-line">
+                <span className="text-accent">
+                  <Icon name={v.icon} size={26} />
+                </span>
+                <h3 className="mt-4 font-display text-lg font-semibold text-ink">{v.title}</h3>
+                <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">{v.text}</p>
+              </div>
             ))}
-          </ul>
-
-          <Link
-            href={`/${locale}/contact`}
-            className="focus-ring mt-10 inline-flex items-center rounded-full bg-cyan px-7 py-3.5 text-sm font-semibold text-navy-deep hover:bg-cyan-soft transition-colors"
-          >
-            {dict.hero.ctaSecondary}
-          </Link>
+          </div>
         </div>
       </section>
+
+      <CtaBanner
+        title={dict.home.cta.title}
+        text={dict.home.cta.text}
+        primary={{ href: `/${locale}/contact`, label: dict.home.cta.primary }}
+        secondary={{ href: company.whatsappUrl, label: dict.home.cta.secondary }}
+      />
     </>
   );
 }
