@@ -5,6 +5,8 @@
 const token = (name) => `rgb(var(--${name}) / <alpha-value>)`;
 
 module.exports = {
+  // dark: variants follow <html data-theme="dark"> (theme toggle / system setting)
+  darkMode: ["selector", "[data-theme=\"dark\"]"],
   content: ["./app/**/*.{js,jsx}", "./components/**/*.{js,jsx}"],
   theme: {
     extend: {

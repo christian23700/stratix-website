@@ -17,7 +17,7 @@ export function Field({ id, label, error, children }) {
       </label>
       {children}
       {error && (
-        <p id={`${id}-error`} className="mt-1.5 text-sm text-red-600">
+        <p id={`${id}-error`} className="mt-1.5 text-sm text-red-600 dark:text-red-400">
           {error}
         </p>
       )}
@@ -60,7 +60,7 @@ export function FormSuccess({ title, text }) {
 export function FormAlert({ status, errors }) {
   if (status !== "error" && status !== "rate_limited") return null;
   return (
-    <p className="mt-6 rounded-lg bg-red-50 p-4 text-sm text-red-700" role="alert">
+    <p className="mt-6 rounded-lg bg-red-50 p-4 text-sm text-red-700 dark:bg-red-950/50 dark:text-red-300" role="alert">
       {status === "error" ? errors.send : errors.rate}
     </p>
   );

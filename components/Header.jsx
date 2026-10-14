@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import LanguageSwitcher from "./LanguageSwitcher";
+import ThemeToggle from "./ThemeToggle";
 import ButtonLink from "./ui/Button";
 
 export default function Header({ locale, dict }) {
@@ -28,7 +29,8 @@ export default function Header({ locale, dict }) {
       <div className="mx-auto max-w-6xl rounded-2xl bg-surface/95 shadow-float ring-1 ring-line backdrop-blur">
         <div className="flex h-16 items-center justify-between gap-4 px-4 sm:px-6">
           <Link href={`/${locale}`} className="focus-ring flex shrink-0 items-center">
-            <Image src="/images/logo.png" alt="Stratix" width={1355} height={359} priority className="h-7 w-auto sm:h-8" />
+            <Image src="/images/logo.png" alt="Stratix" width={1355} height={359} priority className="h-7 w-auto sm:h-8 dark:hidden" />
+            <Image src="/images/logo-white.png" alt="Stratix" width={1355} height={359} priority className="hidden h-7 w-auto sm:h-8 dark:block" />
           </Link>
 
           <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
@@ -47,6 +49,7 @@ export default function Header({ locale, dict }) {
 
           <div className="hidden items-center gap-3 lg:flex">
             <LanguageSwitcher locale={locale} />
+            <ThemeToggle labels={dict.nav.theme} />
             <ButtonLink href={`/${locale}/contact?topic=support`} variant="secondary" size="sm">
               {dict.nav.support}
             </ButtonLink>
@@ -55,23 +58,26 @@ export default function Header({ locale, dict }) {
             </ButtonLink>
           </div>
 
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            className="focus-ring -me-2 p-2 text-ink lg:hidden"
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-            aria-label={dict.nav.menu}
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path
-                d={open ? "M6 6l12 12M18 6L6 18" : "M4 7h16M4 12h16M4 17h16"}
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-              />
-            </svg>
-          </button>
+          <div className="-me-2 flex items-center gap-1 lg:hidden">
+            <ThemeToggle labels={dict.nav.theme} />
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              className="focus-ring p-2 text-ink"
+              aria-expanded={open}
+              aria-controls="mobile-nav"
+              aria-label={dict.nav.menu}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d={open ? "M6 6l12 12M18 6L6 18" : "M4 7h16M4 12h16M4 17h16"}
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
 
         {open && (
