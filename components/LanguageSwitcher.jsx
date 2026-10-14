@@ -22,6 +22,7 @@ export default function LanguageSwitcher({ locale, tone = "light" }) {
           href={swapLocale(pathname, code)}
           className={`focus-ring rounded px-1.5 py-1 transition-colors ${code === locale ? "text-accent" : idle}`}
           aria-current={code === locale ? "true" : undefined}
+          onClick={() => (document.cookie = `NEXT_LOCALE=${code}; path=/; max-age=31536000; samesite=lax`)}
           lang={code}
         >
           {localeMeta[code].short}

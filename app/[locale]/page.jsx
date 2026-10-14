@@ -2,6 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { getDictionary } from "@/lib/get-dictionary";
 import { locales } from "@/lib/i18n-config";
+import { pageMetadata } from "@/lib/seo";
+import { faqJsonLd } from "@/lib/structured-data";
+import JsonLd from "@/components/JsonLd";
 import { company } from "@/lib/company";
 import ButtonLink from "@/components/ui/Button";
 import Highlight, { plain } from "@/components/ui/Highlight";
@@ -21,6 +24,10 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
+export function generateMetadata({ params }) {
+  return pageMetadata(params.locale, "home");
+}
+
 export default function HomePage({ params }) {
   const { locale } = params;
   const dict = getDictionary(locale);
@@ -29,6 +36,7 @@ export default function HomePage({ params }) {
 
   return (
     <>
+      <JsonLd data={faqJsonLd(locale)} />
       {/* Hero */}
       <section className="hero-wash">
         <div className="container-x pb-16 pt-36 text-center sm:pb-20 sm:pt-44">

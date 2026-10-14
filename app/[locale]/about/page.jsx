@@ -1,5 +1,8 @@
 import { getDictionary } from "@/lib/get-dictionary";
 import { locales } from "@/lib/i18n-config";
+import { pageMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd } from "@/lib/structured-data";
+import JsonLd from "@/components/JsonLd";
 import { company } from "@/lib/company";
 import PageHero from "@/components/ui/PageHero";
 import SectionHeader from "@/components/ui/SectionHeader";
@@ -11,8 +14,7 @@ export function generateStaticParams() {
 }
 
 export function generateMetadata({ params }) {
-  const dict = getDictionary(params.locale);
-  return { title: dict.nav.about, description: dict.about.hero.lead };
+  return pageMetadata(params.locale, "about", "/about");
 }
 
 function ContactLines({ contact }) {
@@ -42,6 +44,7 @@ export default function AboutPage({ params }) {
 
   return (
     <>
+      <JsonLd data={[breadcrumbJsonLd(locale, dict.nav.about, "/about")]} />
       <PageHero badge={a.hero.badge} title={a.hero.title} lead={a.hero.lead} />
 
       <section className="container-x grid gap-12 py-16 sm:py-20 lg:grid-cols-[1.2fr_1fr]">

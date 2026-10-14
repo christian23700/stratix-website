@@ -2,6 +2,9 @@ import Image from "next/image";
 import { getDictionary } from "@/lib/get-dictionary";
 import { audienceVisuals, serviceVisuals, visualSize } from "@/lib/visuals";
 import { locales } from "@/lib/i18n-config";
+import { pageMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd, mobilityJsonLd } from "@/lib/structured-data";
+import JsonLd from "@/components/JsonLd";
 import PageHero from "@/components/ui/PageHero";
 import ButtonLink from "@/components/ui/Button";
 import Icon from "@/components/ui/Icon";
@@ -12,8 +15,7 @@ export function generateStaticParams() {
 }
 
 export function generateMetadata({ params }) {
-  const dict = getDictionary(params.locale);
-  return { title: dict.nav.mobility, description: dict.mobility.hero.lead };
+  return pageMetadata(params.locale, "mobility", "/mobility");
 }
 
 export default function MobilityPage({ params }) {
@@ -24,6 +26,7 @@ export default function MobilityPage({ params }) {
 
   return (
     <>
+      <JsonLd data={[breadcrumbJsonLd(locale, dict.nav.mobility, "/mobility"), mobilityJsonLd(locale)]} />
       <PageHero badge={m.hero.badge} title={m.hero.title} lead={m.hero.lead}>
         <div className="mt-10 flex flex-wrap justify-center gap-3">
           {m.audiences.map((a) => (

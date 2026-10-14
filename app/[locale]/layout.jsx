@@ -1,9 +1,12 @@
+import "../globals.css";
 import { Bricolage_Grotesque, Noto_Kufi_Arabic, IBM_Plex_Sans_Arabic } from "next/font/google";
 import { notFound } from "next/navigation";
 import { locales, localeMeta } from "@/lib/i18n-config";
 import { getDictionary } from "@/lib/get-dictionary";
-import { company } from "@/lib/company";
-import LocaleAttributes from "@/components/LocaleAttributes";
+import { pageMetadata } from "@/lib/seo";
+import { siteUrl } from "@/lib/site";
+import { organizationJsonLd, websiteJsonLd } from "@/lib/structured-data";
+import JsonLd from "@/components/JsonLd";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -30,26 +33,32 @@ const plexArabic = IBM_Plex_Sans_Arabic({
   display: "swap"
 });
 
+// Only /en, /fr and /ar exist; anything else is a 404.
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-export async function generateMetadata({ params }) {
-  const dict = getDictionary(params.locale);
+export const viewport = {
+  themeColor: "#0B2D6B",
+  width: "device-width",
+  initialScale: 1
+};
+
+export function generateMetadata({ params }) {
   return {
-    metadataBase: new URL(company.siteUrl),
-    title: { default: dict.meta.title, template: `%s | Stratix` },
-    description: dict.meta.description,
-    alternates: {
-      languages: Object.fromEntries(locales.map((l) => [l, `/${l}`]))
-    },
-    openGraph: {
-      title: dict.meta.title,
-      description: dict.meta.description,
-      siteName: "Stratix",
-      locale: params.locale,
-      type: "website"
-    }
+    metadataBase: new URL(siteUrl),
+    title: { default: getDictionary(params.locale).seo.home.title, template: "%s | Stratix" },
+    applicationName: "Stratix",
+    authors: [{ name: "Stratix Digital Solutions FZ-LLC" }],
+    creator: "Stratix Digital Solutions FZ-LLC",
+    publisher: "Stratix Digital Solutions FZ-LLC",
+    category: "business",
+    formatDetection: { telephone: false, email: false, address: false },
+    robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-video-preview": -1 } },
+    // Pages override these; the home page values are the fallback.
+    ...pageMetadata(params.locale, "home")
   };
 }
 
@@ -58,27 +67,24 @@ export default function LocaleLayout({ children, params }) {
   if (!locales.includes(locale)) notFound();
 
   const dict = getDictionary(locale);
-  const dir = localeMeta[locale].dir;
-  const isAr = locale === "ar";
+  const { dir } = localeMeta[locale];
 
   return (
-    <div
-      dir={dir}
-      className={[
-        bricolage.variable,
-        notoKufiArabic.variable,
-        plexArabic.variable,
-        // --font-body follows the display face, like Genuka
-        "[--font-body:var(--font-display)]",
-        isAr ? "font-body-ar" : "font-body",
-        "flex min-h-screen flex-col bg-canvas text-ink"
-      ].join(" ")}
-    >
-      <LocaleAttributes locale={locale} dir={dir} />
-      <Header locale={locale} dict={dict} />
-      <main className="flex-1">{children}</main>
-      <Footer locale={locale} dict={dict} />
-      <WhatsAppButton dict={dict} locale={locale} />
-    </div>
+    <html lang={locale} dir={dir} className={[bricolage.variable, notoKufiArabic.variable, plexArabic.variable].join(" ")}>
+      <body
+        className={[
+          // --font-body follows the display face, like Genuka
+          "[--font-body:var(--font-display)]",
+          locale === "ar" ? "font-body-ar" : "font-body",
+          "flex min-h-screen flex-col bg-canvas text-ink antialiased"
+        ].join(" ")}
+      >
+        <JsonLd data={[organizationJsonLd(locale), websiteJsonLd(locale)]} />
+        <Header locale={locale} dict={dict} />
+        <main className="flex-1">{children}</main>
+        <Footer locale={locale} dict={dict} />
+        <WhatsAppButton dict={dict} locale={locale} />
+      </body>
+    </html>
   );
 }

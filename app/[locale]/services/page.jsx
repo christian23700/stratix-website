@@ -1,6 +1,9 @@
 import Image from "next/image";
 import { getDictionary } from "@/lib/get-dictionary";
 import { locales } from "@/lib/i18n-config";
+import { pageMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd, servicesJsonLd } from "@/lib/structured-data";
+import JsonLd from "@/components/JsonLd";
 import { plain } from "@/components/ui/Highlight";
 import PageHero from "@/components/ui/PageHero";
 import ButtonLink from "@/components/ui/Button";
@@ -15,8 +18,7 @@ export function generateStaticParams() {
 }
 
 export function generateMetadata({ params }) {
-  const dict = getDictionary(params.locale);
-  return { title: dict.nav.services, description: dict.services.hero.lead };
+  return pageMetadata(params.locale, "services", "/services");
 }
 
 export default function ServicesPage({ params }) {
@@ -27,6 +29,7 @@ export default function ServicesPage({ params }) {
 
   return (
     <>
+      <JsonLd data={[breadcrumbJsonLd(locale, dict.nav.services, "/services"), servicesJsonLd(locale)]} />
       <PageHero badge={hero.badge} title={hero.title} lead={hero.lead}>
         <nav className="mx-auto mt-10 flex max-w-3xl flex-wrap justify-center gap-2" aria-label={hero.badge}>
           {items.map((s) => (

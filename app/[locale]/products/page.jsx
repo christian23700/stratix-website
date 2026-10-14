@@ -2,6 +2,9 @@ import Image from "next/image";
 import { getDictionary } from "@/lib/get-dictionary";
 import { solutionVisuals, visualSize } from "@/lib/visuals";
 import { locales } from "@/lib/i18n-config";
+import { pageMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd, partnerProductsJsonLd } from "@/lib/structured-data";
+import JsonLd from "@/components/JsonLd";
 import PageHero from "@/components/ui/PageHero";
 import SectionHeader from "@/components/ui/SectionHeader";
 import ButtonLink from "@/components/ui/Button";
@@ -12,8 +15,7 @@ export function generateStaticParams() {
 }
 
 export function generateMetadata({ params }) {
-  const dict = getDictionary(params.locale);
-  return { title: dict.nav.products, description: dict.products.hero.lead };
+  return pageMetadata(params.locale, "products", "/products");
 }
 
 export default function ProductsPage({ params }) {
@@ -23,6 +25,7 @@ export default function ProductsPage({ params }) {
 
   return (
     <>
+      <JsonLd data={[breadcrumbJsonLd(locale, dict.nav.products, "/products"), partnerProductsJsonLd(locale)]} />
       <PageHero badge={hero.badge} title={hero.title} lead={hero.lead} />
 
       <section className="container-x space-y-24 py-16 sm:py-24">
