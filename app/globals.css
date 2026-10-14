@@ -87,3 +87,22 @@ details > summary::-webkit-details-marker {
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+/* Footer: navy-to-night gradient with blue and gold glows, a dotted texture and the Dubai skyline */
+.footer-gradient {
+  background:
+    radial-gradient(55% 70% at 88% 0%, rgb(var(--accent) / 0.32) 0%, transparent 62%),
+    radial-gradient(45% 60% at 0% 100%, rgb(var(--gold) / 0.2) 0%, transparent 62%),
+    linear-gradient(160deg, rgb(var(--brand)) 0%, rgb(var(--brand-deep)) 48%, rgb(var(--night)) 100%);
+}
+.footer-dots {
+  background-image: radial-gradient(rgb(255 255 255 / 0.09) 1.2px, transparent 1.2px);
+  background-size: 28px 28px;
+  -webkit-mask-image: linear-gradient(to bottom, #000, transparent 75%);
+  mask-image: linear-gradient(to bottom, #000, transparent 75%);
+}
+.footer-skyline {
+  background: linear-gradient(to top, rgb(255 255 255 / 0.1), rgb(255 255 255 / 0.03));
+  -webkit-mask: url("/images/skyline.svg") bottom / 100% 100% no-repeat;
+  mask: url("/images/skyline.svg") bottom / 100% 100% no-repeat;
+}

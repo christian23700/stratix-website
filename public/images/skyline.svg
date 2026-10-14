@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 400" preserveAspectRatio="none">
+  <g fill="#000">
+    <rect x="0" y="300" width="70" height="100"/><rect x="60" y="250" width="50" height="150"/>
+    <rect x="115" y="280" width="60" height="120"/><rect x="180" y="210" width="44" height="190"/>
+    <rect x="230" y="265" width="70" height="135"/><rect x="305" y="230" width="38" height="170"/>
+    <path d="M350 400V190l30-30 30 30v210z"/><rect x="415" y="275" width="55" height="125"/>
+    <!-- Emirates Towers -->
+    <path d="M480 400V170l40-60v290z"/><path d="M530 400V205l32-48v243z"/>
+    <rect x="570" y="290" width="60" height="110"/><rect x="635" y="250" width="40" height="150"/>
+    <rect x="680" y="300" width="50" height="100"/>
+    <!-- Burj Khalifa -->
+    <path d="M740 400l6-70h12l4-60h12l4-70h10l4-80h8l3-70h6l2-48 2 48h6l3 70h8l4 80h10l4 70h12l4 60h12l6 70z"/>
+    <rect x="880" y="285" width="60" height="115"/><rect x="945" y="235" width="44" height="165"/>
+    <path d="M995 400V215h50l-8-25h-34z"/><rect x="1050" y="270" width="62" height="130"/>
+    <!-- Burj Al Arab -->
+    <path d="M1125 400V120c60 30 105 120 112 280z"/><rect x="1118" y="100" width="7" height="300"/>
+    <rect x="1245" y="280" width="55" height="120"/>
+    <!-- Dubai Frame -->
+    <path d="M1310 400V190h110v210h-26V214h-58v186z"/>
+    <rect x="1430" y="260" width="48" height="140"/><rect x="1484" y="225" width="40" height="175"/>
+    <rect x="1530" y="290" width="70" height="110"/>
+    <rect x="0" y="385" width="1600" height="15"/>
+  </g>
+</svg>

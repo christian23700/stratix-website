@@ -11,6 +11,7 @@ import JsonLd from "@/components/JsonLd";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import ScrollTopButton from "@/components/ScrollTopButton";
 
 // Genuka uses Bricolage Grotesque for both headings and text.
 const bricolage = Bricolage_Grotesque({
@@ -89,6 +90,7 @@ export default function LocaleLayout({ children, params }) {
         <main className="flex-1">{children}</main>
         <Footer locale={locale} dict={dict} />
         <WhatsAppButton dict={dict} locale={locale} />
+        <ScrollTopButton label={dict.common.backToTop} />
       </body>
     </html>
   );

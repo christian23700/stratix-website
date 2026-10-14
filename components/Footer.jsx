@@ -39,8 +39,12 @@ export default function Footer({ locale, dict }) {
   ];
 
   return (
-    <footer className="bg-night text-white">
-      <div className="container-x py-16">
+    <footer className="footer-gradient relative isolate overflow-hidden text-white">
+      {/* decoration: accent line, dotted texture, Dubai skyline */}
+      <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-accent via-accent to-gold" aria-hidden="true" />
+      <div className="footer-dots absolute inset-0 -z-10" aria-hidden="true" />
+      <div className="footer-skyline absolute inset-x-0 bottom-0 -z-10 h-36 sm:h-52" aria-hidden="true" />
+      <div className="container-x relative pb-10 pt-16">
         <div className="grid gap-12 lg:grid-cols-[1.3fr_2fr]">
           <div>
             <Link href={l("")} className="focus-ring inline-block">
