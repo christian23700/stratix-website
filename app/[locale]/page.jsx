@@ -16,6 +16,7 @@ import CtaBanner from "@/components/ui/CtaBanner";
 import Icon from "@/components/ui/Icon";
 import ProductCard from "@/components/ProductCard";
 import ServiceOrbit from "@/components/ServiceOrbit";
+import ServiceRails from "@/components/ServiceRails";
 import HeroVideo from "@/components/HeroVideo";
 
 // Visual shown for each showcase item, in order.
@@ -32,7 +33,7 @@ export function generateMetadata({ params }) {
 export default function HomePage({ params }) {
   const { locale } = params;
   const dict = getDictionary(locale);
-  const { hero, facts, suite, showcase, products, mobility, steps, faq, cta } = dict.home;
+  const { hero, suite, showcase, products, mobility, steps, faq, cta } = dict.home;
   const l = (path) => `/${locale}${path}`;
 
   return (
@@ -40,7 +41,7 @@ export default function HomePage({ params }) {
       <JsonLd data={[faqJsonLd(locale), heroVideoJsonLd(locale)]} />
       {/* Hero */}
       <section className="hero-wash">
-        <div className="container-x pb-16 pt-36 text-center sm:pb-20 sm:pt-44">
+        <div className="container-x pb-8 pt-36 text-center sm:pb-20 sm:pt-44">
           <span className="inline-flex items-center gap-2 rounded-full bg-surface px-4 py-1.5 text-sm font-medium text-ink-soft ring-1 ring-line">
             <span className="h-2 w-2 rounded-full bg-accent" aria-hidden="true" />
             {hero.badge}
@@ -66,25 +67,15 @@ export default function HomePage({ params }) {
               <HeroVideo locale={locale} labels={{ video: hero.video, play: hero.play, pause: hero.pause }} />
             </div>
           </div>
-
-          <dl className="mx-auto mt-16 grid max-w-4xl gap-4 sm:grid-cols-3">
-            {facts.map((f) => (
-              <div key={f.label} className="bg-surface p-5 text-start shadow-hard ring-1 ring-line">
-                <dt className="font-display text-2xl font-bold text-brand" dir="auto">
-                  {f.value}
-                </dt>
-                <dd className="mt-1 text-sm leading-snug text-ink-soft">{f.label}</dd>
-              </div>
-            ))}
-          </dl>
         </div>
       </section>
 
       {/* Service suite orbit */}
-      <section className="bg-gradient-to-b from-canvas to-accent-tint/60 py-20 sm:py-28">
+      <section className="bg-gradient-to-b from-canvas to-accent-tint/60 py-14 sm:py-28">
         <div className="container-x">
           <SectionHeader badge={suite.badge} title={suite.title} lead={suite.lead} />
           <ServiceOrbit items={suite.items} locale={locale} />
+          <ServiceRails suite={suite} locale={locale} learnMore={dict.common.learnMore} />
         </div>
       </section>
 

@@ -83,3 +83,11 @@ details > summary::-webkit-details-marker {
 [dir="rtl"] .font-display {
   font-family: var(--font-display-ar), sans-serif;
 }
+
+/* Horizontal card rails: keep swipe, hide the scrollbar */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
