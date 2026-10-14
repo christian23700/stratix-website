@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { getDictionary } from "@/lib/get-dictionary";
 import { locales } from "@/lib/i18n-config";
+import { pageMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd, catalogueJsonLd } from "@/lib/structured-data";
+import JsonLd from "@/components/JsonLd";
 import { company } from "@/lib/company";
 import { perfumes } from "@/lib/catalogue";
 import PageHero from "@/components/ui/PageHero";
@@ -13,8 +16,7 @@ export function generateStaticParams() {
 }
 
 export function generateMetadata({ params }) {
-  const dict = getDictionary(params.locale);
-  return { title: dict.nav.catalogue, description: dict.catalogue.hero.lead };
+  return pageMetadata(params.locale, "catalogue", "/catalogue");
 }
 
 export default function CataloguePage({ params, searchParams }) {
@@ -24,6 +26,7 @@ export default function CataloguePage({ params, searchParams }) {
 
   return (
     <>
+      <JsonLd data={[breadcrumbJsonLd(locale, dict.nav.catalogue, "/catalogue"), catalogueJsonLd(locale)]} />
       <PageHero badge={c.hero.badge} title={c.hero.title} lead={c.hero.lead} />
 
       <section className="container-x pb-16 sm:pb-20">

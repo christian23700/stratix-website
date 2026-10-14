@@ -12,9 +12,14 @@ const srcDir = path.join(root, "design", "visuals");
 const outDir = path.join(root, "public", "images", "visuals");
 const types = { ".html": "text/html", ".css": "text/css", ".js": "text/javascript", ".svg": "image/svg+xml", ".png": "image/png", ".jpg": "image/jpeg" };
 
+const publicDir = path.join(root, "public");
+
+// Serves design/visuals, plus the site's public folder under /public/ (scenes can reuse its images).
 const server = http.createServer(async (req, res) => {
-  const file = path.join(srcDir, decodeURIComponent(new URL(req.url, "http://x").pathname));
-  if (!file.startsWith(srcDir)) return res.writeHead(403).end();
+  const url = decodeURIComponent(new URL(req.url, "http://x").pathname);
+  const [dir, rel] = url.startsWith("/public/") ? [publicDir, url.slice("/public".length)] : [srcDir, url];
+  const file = path.join(dir, rel);
+  if (!file.startsWith(dir)) return res.writeHead(403).end();
   try {
     res.writeHead(200, { "content-type": types[path.extname(file)] || "application/octet-stream" });
     res.end(await fs.readFile(file));

@@ -1,0 +1,13 @@
+/* Link-preview (Open Graph) cards, 1200×630. Kept almost text-free so one image fits EN, FR and AR pages. */
+html, body { width: 1200px; height: 630px; }
+.og { position: relative; width: 1200px; height: 630px; overflow: hidden; display: grid; grid-template-columns: 540px 1fr; background: #061430; }
+.og .left { position: relative; padding: 56px 56px 48px; display: flex; flex-direction: column; background: linear-gradient(160deg, #061430 0%, #0b2d6b 70%, #0b75aa 140%); color: #fff; }
+.og .left::after { content: ""; position: absolute; inset: 0; background-image: radial-gradient(rgba(255, 255, 255, .1) 1.2px, transparent 1.2px); background-size: 30px 30px; pointer-events: none; }
+.og .logo { height: 46px; width: auto; align-self: flex-start; position: relative; z-index: 1; }
+.og .title { margin-top: auto; position: relative; z-index: 1; font-size: 64px; line-height: 1.02; font-weight: 800; letter-spacing: -.02em; }
+.og .title em { font-style: normal; color: #e8c77f; }
+.og .icons { position: relative; z-index: 1; display: flex; gap: 12px; margin-top: 30px; }
+.og .icons span { width: 58px; height: 58px; border-radius: 16px; display: inline-flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, .1); border: 1px solid rgba(255, 255, 255, .2); color: #fff; }
+.og .right { position: relative; overflow: hidden; }
+.og .right img.cover { width: 100%; height: 100%; object-fit: cover; display: block; }
+.og .accent { position: absolute; left: 540px; top: 0; bottom: 0; width: 8px; background: linear-gradient(#1593d0, #c99a3e); z-index: 2; }

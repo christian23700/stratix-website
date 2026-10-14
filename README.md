@@ -60,6 +60,16 @@ npm run visuals -- software  # une seule image
 Le rendu utilise Playwright (`playwright-core`, Chromium de `PLAYWRIGHT_BROWSERS_PATH` ou Chrome installé).
 La correspondance image ↔ section est dans `lib/visuals.js`.
 
+## SEO et métadonnées
+
+- **Langue** : `middleware.js` redirige `/` (et toute URL sans langue) vers `/fr`, `/ar` ou `/en` selon le navigateur ; le choix fait avec le sélecteur de langue est mémorisé (cookie `NEXT_LOCALE`). `<html lang dir>` est rendu côté serveur.
+- **Titres et descriptions** : bloc `seo` de chaque dictionnaire (une entrée par page, ≤ 60 / ~160 caractères).
+- **Balises** : `lib/seo.js` → canonical, hreflang (en / fr / ar / x-default), Open Graph et Twitter pour chaque page.
+- **Images d'aperçu** (WhatsApp, Facebook, LinkedIn, X) : `design/visuals/og-*.html`, rendues en 1200×630 par `npm run visuals`.
+- **Données structurées** : `lib/structured-data.js` (Organization, WebSite, FAQPage, BreadcrumbList, Service, Product + VideoObject, SoftwareApplication).
+- **Fichiers** : `app/sitemap.js` (avec hreflang), `app/robots.js`, `app/manifest.js`, `app/icon.png`, `app/apple-icon.png`.
+- **Domaine** : définir `NEXT_PUBLIC_SITE_URL` dans Vercel dès que le domaine final est connu.
+
 ## Modifier les textes
 
 Tout le contenu est dans `lib/dictionaries/en.js`, `fr.js`, `ar.js` (même structure).
@@ -68,7 +78,7 @@ Coordonnées Stratix et MboaSoft, liens des produits partenaires : `lib/company.
 ## Avant la mise en ligne
 
 1. Renseigner les variables SMTP sur l'hébergeur.
-2. Vérifier le domaine dans `lib/company.js` (`siteUrl`), utilisé par le sitemap et robots.
+2. Définir `NEXT_PUBLIC_SITE_URL` (domaine final) dans Vercel, puis soumettre `/sitemap.xml` dans Google Search Console.
 3. Les photos du catalogue Lattafa (dossier Stratix Business) n'ont pas été reprises : droits à vérifier avant usage.
 
 ---

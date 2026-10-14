@@ -1,5 +1,8 @@
 import { getDictionary } from "@/lib/get-dictionary";
 import { locales } from "@/lib/i18n-config";
+import { pageMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd } from "@/lib/structured-data";
+import JsonLd from "@/components/JsonLd";
 import { company, products } from "@/lib/company";
 import PageHero from "@/components/ui/PageHero";
 import ContactForm from "@/components/ContactForm";
@@ -10,8 +13,7 @@ export function generateStaticParams() {
 }
 
 export function generateMetadata({ params }) {
-  const dict = getDictionary(params.locale);
-  return { title: dict.nav.contact, description: dict.contact.hero.lead };
+  return pageMetadata(params.locale, "contact", "/contact");
 }
 
 export default function ContactPage({ params, searchParams }) {
@@ -28,6 +30,7 @@ export default function ContactPage({ params, searchParams }) {
 
   return (
     <>
+      <JsonLd data={[breadcrumbJsonLd(locale, dict.nav.contact, "/contact")]} />
       <PageHero badge={c.hero.badge} title={c.hero.title} lead={c.hero.lead} />
 
       <section className="container-x grid items-start gap-10 pb-20 sm:pb-24 lg:grid-cols-[1.5fr_1fr]">
