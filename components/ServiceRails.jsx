@@ -6,8 +6,7 @@ import Icon from "./ui/Icon";
 // Groups of the home suite, by the section the link points to.
 const GROUPS = [
   { key: "services", match: (href) => href.startsWith("/services") },
-  { key: "mobility", match: (href) => href.startsWith("/mobility") },
-  { key: "partners", match: (href) => href.startsWith("/products") }
+  { key: "mobility", match: (href) => href.startsWith("/mobility") }
 ];
 
 /**
