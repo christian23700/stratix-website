@@ -4,8 +4,12 @@
  * highlighted heading words, flat buttons with a hard offset shadow,
  * warm canvas, dark footer). Colours are Stratix's own, taken from the logo.
  * Values are space-separated RGB so Tailwind opacity modifiers work.
+ *
+ * Light is the default; <html data-theme="dark"> switches every token (set before paint by the
+ * script in app/[locale]/layout.jsx from the saved choice or the system setting).
  */
 :root {
+  color-scheme: light;
   --canvas: 250 248 244;      /* warm off-white page background */
   --surface: 255 255 255;     /* cards, nav, form */
   --ink: 11 31 66;            /* headings — logo navy */
@@ -22,4 +26,24 @@
   --line: 226 222 214;
   --night: 17 17 16;          /* footer */
   --shadow: 0 0 0;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --canvas: 10 15 26;         /* deep navy-black page */
+  --surface: 18 26 42;        /* raised cards, nav, form */
+  --ink: 236 240 247;
+  --ink-soft: 184 194 212;
+  --ink-muted: 134 147 170;
+  --brand: 20 62 138;         /* navy lifted so it reads on the dark page */
+  --brand-deep: 6 20 48;
+  --brand-tint: 24 38 66;
+  --accent: 21 147 208;       /* same blue: white button text keeps its contrast, and it reads on the dark page */
+  --accent-strong: 11 117 170;
+  --accent-tint: 17 44 68;
+  --gold: 222 182 102;
+  --gold-tint: 42 34 20;
+  --line: 40 51 71;
+  --night: 5 8 14;
+  --shadow: 120 150 190;      /* the hard offset shadow stays visible as a soft slate edge */
 }

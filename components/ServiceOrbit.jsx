@@ -27,7 +27,7 @@ export default function ServiceOrbit({ items, locale }) {
           aria-hidden="true"
         />
       ))}
-      <div className="absolute left-1/2 top-1/2 flex h-28 w-28 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-surface shadow-float ring-1 ring-line">
+      <div className="absolute left-1/2 top-1/2 flex h-28 w-28 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-float ring-1 ring-line">
         <Image src="/images/mark.png" alt="" width={256} height={256} className="h-14 w-14" />
       </div>
       {placed.map((item) => (

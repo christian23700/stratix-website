@@ -5,6 +5,7 @@ import { locales, localeMeta } from "@/lib/i18n-config";
 import { getDictionary } from "@/lib/get-dictionary";
 import { pageMetadata } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
+import { themeScript } from "@/lib/theme";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/structured-data";
 import JsonLd from "@/components/JsonLd";
 import Header from "@/components/Header";
@@ -70,7 +71,11 @@ export default function LocaleLayout({ children, params }) {
   const { dir } = localeMeta[locale];
 
   return (
-    <html lang={locale} dir={dir} className={[bricolage.variable, notoKufiArabic.variable, plexArabic.variable].join(" ")}>
+    // suppressHydrationWarning: the theme script sets data-theme on <html> before React hydrates
+    <html lang={locale} dir={dir} className={[bricolage.variable, notoKufiArabic.variable, plexArabic.variable].join(" ")} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body
         className={[
           // --font-body follows the display face, like Genuka
