@@ -33,7 +33,7 @@ export function generateMetadata({ params }) {
 export default function HomePage({ params }) {
   const { locale } = params;
   const dict = getDictionary(locale);
-  const { hero, facts, suite, showcase, products, mobility, steps, faq, cta } = dict.home;
+  const { hero, suite, showcase, products, mobility, steps, faq, cta } = dict.home;
   const l = (path) => `/${locale}${path}`;
 
   return (
@@ -67,18 +67,6 @@ export default function HomePage({ params }) {
               <HeroVideo locale={locale} labels={{ video: hero.video, play: hero.play, pause: hero.pause }} />
             </div>
           </div>
-
-          {/* One compact panel on phones, three columns from sm up */}
-          <dl className="mx-auto mt-12 max-w-4xl divide-y divide-line bg-surface text-start shadow-hard ring-1 ring-line sm:mt-16 sm:grid sm:grid-cols-3 sm:divide-y-0">
-            {facts.map((f, i) => (
-              <div key={f.label} className={`px-5 py-3.5 sm:p-5 ${i ? "sm:border-s sm:border-line" : ""}`}>
-                <dt className="font-display text-xl font-bold text-brand sm:text-2xl" dir="auto">
-                  {f.value}
-                </dt>
-                <dd className="mt-0.5 text-sm leading-snug text-ink-soft sm:mt-1">{f.label}</dd>
-              </div>
-            ))}
-          </dl>
         </div>
       </section>
 
