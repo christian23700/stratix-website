@@ -1,7 +1,7 @@
 import { locales } from "@/lib/i18n-config";
 import { company } from "@/lib/company";
 
-const routes = ["", "/services", "/mobility", "/products", "/about", "/contact"];
+const routes = ["", "/services", "/catalogue", "/mobility", "/products", "/about", "/contact"];
 
 export default function sitemap() {
   return locales.flatMap((locale) =>

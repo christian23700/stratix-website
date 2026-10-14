@@ -14,6 +14,7 @@ export default function Footer({ locale, dict }) {
       links: [
         { href: l("/services#software"), label: f.links.software },
         { href: l("/services#ecommerce"), label: f.links.ecommerce },
+        { href: l("/catalogue"), label: dict.nav.catalogue },
         { href: l("/services#marketing"), label: f.links.marketing },
         { href: l("/services#training"), label: f.links.training }
       ]

@@ -15,6 +15,7 @@ export default function Header({ locale, dict }) {
 
   const nav = [
     { href: `/${locale}/services`, label: dict.nav.services },
+    { href: `/${locale}/catalogue`, label: dict.nav.catalogue },
     { href: `/${locale}/mobility`, label: dict.nav.mobility },
     { href: `/${locale}/products`, label: dict.nav.products },
     { href: `/${locale}/about`, label: dict.nav.about }
