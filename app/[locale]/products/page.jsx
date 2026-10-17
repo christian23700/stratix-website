@@ -9,6 +9,7 @@ import PageHero from "@/components/ui/PageHero";
 import SectionHeader from "@/components/ui/SectionHeader";
 import ButtonLink from "@/components/ui/Button";
 import ProductCard from "@/components/ProductCard";
+import BusinessApps from "@/components/BusinessApps";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -31,6 +32,12 @@ export default function ProductsPage({ params }) {
       <section className="container-x space-y-24 py-16 sm:py-24">
         <ProductCard id="mboameet" dict={dict} locale={locale} />
         <ProductCard id="efarmer" dict={dict} locale={locale} />
+      </section>
+
+      <section id="business-apps" className="scroll-mt-28 border-y border-line bg-canvas py-20 sm:py-24">
+        <div className="container-x">
+          <BusinessApps copy={dict.businessApps} ctaHref={`/${locale}/contact?topic=software`} />
+        </div>
       </section>
 
       <section className="bg-surface py-20 sm:py-24">

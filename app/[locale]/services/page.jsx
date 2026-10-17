@@ -66,11 +66,16 @@ export default function ServicesPage({ params }) {
                     </li>
                   ))}
                 </ul>
-                <div className="mt-8">
+                <div className="mt-8 flex flex-wrap gap-3">
                   <ButtonLink href={s.href ? l(s.href) : l(`/contact?topic=${s.topic}`)}>
                     {s.cta}
                     <Icon name="arrow" size={18} className="rtl-flip" />
                   </ButtonLink>
+                  {s.more && (
+                    <ButtonLink href={l(s.more.href)} variant="secondary">
+                      {s.more.label}
+                    </ButtonLink>
+                  )}
                 </div>
               </div>
 

@@ -38,7 +38,7 @@ export function SubmitButton({ label, sending }) {
 /** Off-screen field that only bots fill in. */
 export function Honeypot() {
   return (
-    <div className="absolute -left-[9999px]" aria-hidden="true">
+    <div className="pointer-events-none absolute h-0 w-0 overflow-hidden opacity-0" aria-hidden="true">
       <label htmlFor="website">Website</label>
       <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
     </div>
