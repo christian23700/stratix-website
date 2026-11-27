@@ -23,8 +23,8 @@ export default function ContactForm({ dict, locale, defaultTopic }) {
   const selected = topics.includes(defaultTopic) ? defaultTopic : "";
 
   return (
-    <form ref={formRef} action={formAction} noValidate className="bg-surface p-6 shadow-hard-lg ring-1 ring-line sm:p-10">
-      <h2 className="font-display text-2xl font-bold text-ink">{f.title}</h2>
+    <form ref={formRef} action={formAction} noValidate className="bg-surface p-6 rounded-3xl shadow-hard-lg ring-1 ring-line sm:p-10">
+      <h2 className="font-display text-2xl font-semibold text-ink">{f.title}</h2>
       <p className="mt-2 text-ink-soft">{f.subtitle}</p>
 
       <FormAlert status={state.status} errors={f.errors} />

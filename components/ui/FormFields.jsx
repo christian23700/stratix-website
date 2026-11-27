@@ -47,11 +47,11 @@ export function Honeypot() {
 
 export function FormSuccess({ title, text }) {
   return (
-    <div className="bg-surface p-8 text-center shadow-hard-lg ring-1 ring-line sm:p-12" role="status">
+    <div className="bg-surface p-8 text-center rounded-3xl shadow-hard-lg ring-1 ring-line sm:p-12" role="status">
       <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-accent-tint text-accent">
         <Icon name="check" size={28} strokeWidth={2.2} />
       </span>
-      <h2 className="mt-5 font-display text-2xl font-bold text-ink">{title}</h2>
+      <h2 className="mt-5 font-display text-2xl font-semibold text-ink">{title}</h2>
       <p className="mx-auto mt-3 max-w-md text-ink-soft">{text}</p>
     </div>
   );

@@ -57,11 +57,11 @@ export default function AboutPage({ params }) {
         </div>
         <div className="space-y-5">
           {a.partners.map((p, i) => (
-            <div key={p.name} className="bg-surface p-7 shadow-hard ring-1 ring-line">
+            <div key={p.name} className="bg-surface p-7 rounded-2xl shadow-hard ring-1 ring-line">
               <span className={`text-xs font-semibold uppercase tracking-[0.14em] ${i ? "text-gold" : "text-accent"}`}>
                 {p.place}
               </span>
-              <h2 className="mt-2 font-display text-xl font-bold text-ink">{p.name}</h2>
+              <h2 className="mt-2 font-display text-xl font-semibold text-ink">{p.name}</h2>
               <p className="mt-2 leading-relaxed text-ink-soft">{p.role}</p>
               <ContactLines contact={i ? company.partner : company} />
             </div>
@@ -89,8 +89,8 @@ export default function AboutPage({ params }) {
       <CtaBanner
         title={dict.home.cta.title}
         text={dict.home.cta.text}
-        primary={{ href: `/${locale}/contact`, label: dict.home.cta.primary }}
-        secondary={{ href: company.whatsappUrl, label: dict.home.cta.secondary }}
+        primary={{ href: `/${locale}/contact`, label: dict.nav.contact }}
+        secondary={{ href: company.whatsappUrl, label: dict.home.cta.button }}
       />
     </>
   );

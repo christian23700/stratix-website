@@ -54,7 +54,7 @@ export default function ProductsPage({ params }) {
                   sizes="(min-width: 1024px) 280px, (min-width: 640px) 50vw, 100vw"
                   className="-mx-6 -mt-6 mb-5 w-[calc(100%+3rem)] max-w-none"
                 />
-                <span className="inline-block bg-brand px-2.5 py-1 font-display text-xs font-bold tracking-wider text-white">
+                <span className="inline-block bg-brand px-2.5 py-1 font-display text-xs font-semibold tracking-wider text-white">
                   {item.code}
                 </span>
                 <h3 className="mt-4 font-display text-lg font-semibold text-ink">{item.title}</h3>

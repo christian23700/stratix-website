@@ -21,7 +21,13 @@ const paths = {
   support: "M4 14v-2a8 8 0 0116 0v2M4 14a2 2 0 002 2h1v-5H6a2 2 0 00-2 2zm16 0a2 2 0 01-2 2h-1v-5h1a2 2 0 012 2zm-3 2v1a3 3 0 01-3 3h-2",
   mail: "M4 6h16v12H4zM4 7l8 6 8-6",
   pin: "M12 22s7-6.1 7-12a7 7 0 10-14 0c0 5.9 7 12 7 12zm0-9.6a2.4 2.4 0 100-4.8 2.4 2.4 0 000 4.8z",
-  phone: "M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"
+  phone: "M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2",
+  close: "M6 6l12 12M18 6L6 18",
+  plus: "M12 5v14M5 12h14",
+  minus: "M5 12h14",
+  list: "M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01",
+  play: "M8 5.5v13l10.5-6.5L8 5.5z",
+  whatsapp: "M20 12a8 8 0 01-11.8 7L4 20l1.1-4.1A8 8 0 1120 12z"
 };
 
 export default function Icon({ name, size = 20, className = "", strokeWidth = 1.7 }) {

@@ -1,8 +1,7 @@
 /*
  * Stratix theme tokens.
- * Layout and component structure follow genuka.com (floating pill nav,
- * highlighted heading words, flat buttons with a hard offset shadow,
- * warm canvas, dark footer). Colours are Stratix's own, taken from the logo.
+ * Boutique look (2026-11 revamp): sand canvas, logo navy for buttons and text,
+ * Dubai gold for highlights, rounded cards with soft shadows.
  * Values are space-separated RGB so Tailwind opacity modifiers work.
  *
  * Light is the default; <html data-theme="dark"> switches every token (set before paint by the
@@ -10,40 +9,42 @@
  */
 :root {
   color-scheme: light;
-  --canvas: 250 248 244;      /* warm off-white page background */
+  --canvas: 247 242 234;      /* sand page background */
   --surface: 255 255 255;     /* cards, nav, form */
-  --ink: 11 31 66;            /* headings — logo navy */
-  --ink-soft: 61 76 102;      /* body copy */
-  --ink-muted: 107 119 140;   /* captions */
-  --brand: 11 45 107;         /* logo navy */
-  --brand-deep: 6 20 48;
-  --brand-tint: 232 238 248;
-  --accent: 21 147 208;       /* logo blue — highlights, primary buttons */
-  --accent-strong: 11 117 170;
-  --accent-tint: 228 243 251;
-  --gold: 201 154 62;         /* Dubai commerce accent */
-  --gold-tint: 250 242 225;
-  --line: 226 222 214;
-  --night: 17 17 16;          /* footer */
-  --shadow: 0 0 0;
+  --ink: 22 35 59;            /* headings — deep navy */
+  --ink-soft: 63 70 86;       /* body copy */
+  --ink-muted: 91 97 112;     /* captions */
+  --brand: 15 43 91;          /* logo navy */
+  --brand-deep: 10 26 56;
+  --brand-tint: 234 239 248;
+  --accent: 15 43 91;         /* primary buttons and links: logo navy */
+  --accent-strong: 10 26 56;
+  --accent-tint: 234 239 248;
+  --gold: 201 154 69;         /* Dubai gold: decoration, highlights on dark */
+  --gold-deep: 122 90 30;     /* gold text on light backgrounds (AA contrast) */
+  --gold-tint: 248 239 220;
+  --line: 230 220 203;
+  --night: 22 35 59;          /* footer */
+  --shadow: 15 43 91;
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --canvas: 10 15 26;         /* deep navy-black page */
-  --surface: 18 26 42;        /* raised cards, nav, form */
-  --ink: 236 240 247;
-  --ink-soft: 184 194 212;
-  --ink-muted: 134 147 170;
-  --brand: 20 62 138;         /* navy lifted so it reads on the dark page */
-  --brand-deep: 6 20 48;
-  --brand-tint: 24 38 66;
-  --accent: 21 147 208;       /* same blue: white button text keeps its contrast, and it reads on the dark page */
-  --accent-strong: 11 117 170;
-  --accent-tint: 17 44 68;
-  --gold: 222 182 102;
-  --gold-tint: 42 34 20;
-  --line: 40 51 71;
-  --night: 5 8 14;
-  --shadow: 120 150 190;      /* the hard offset shadow stays visible as a soft slate edge */
+  --canvas: 14 18 28;
+  --surface: 22 28 42;
+  --ink: 240 236 228;
+  --ink-soft: 196 200 210;
+  --ink-muted: 150 156 170;
+  --brand: 26 58 116;
+  --brand-deep: 8 16 34;
+  --brand-tint: 28 38 60;
+  --accent: 47 84 150;        /* lifted navy: white button text keeps its contrast */
+  --accent-strong: 36 66 122;
+  --accent-tint: 28 40 66;
+  --gold: 222 186 112;
+  --gold-deep: 222 186 112;
+  --gold-tint: 44 36 22;
+  --line: 44 52 70;
+  --night: 8 12 20;
+  --shadow: 0 0 0;
 }

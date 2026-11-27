@@ -14,7 +14,7 @@ export default function ProductCard({ id, dict, locale, compact = false }) {
     return (
       <Link
         href={`/${locale}/products#${id}`}
-        className="focus-ring group flex flex-col bg-surface p-7 shadow-hard ring-1 ring-line transition hover:-translate-y-1 sm:p-8"
+        className="focus-ring group flex flex-col overflow-hidden bg-surface p-7 rounded-2xl shadow-hard ring-1 ring-line transition hover:-translate-y-1 sm:p-8"
         style={{ "--product": p.color }}
       >
         <Image
@@ -28,7 +28,7 @@ export default function ProductCard({ id, dict, locale, compact = false }) {
         <div className="flex items-center gap-4">
           <Image src={p.logo} alt="" width={64} height={64} className="h-14 w-14 rounded-2xl object-contain" />
           <div>
-            <h3 className="font-display text-2xl font-bold text-ink">{p.name}</h3>
+            <h3 className="font-display text-2xl font-semibold text-ink">{p.name}</h3>
             <p className="text-sm font-medium text-[color:var(--product)]">{copy.tagline}</p>
           </div>
         </div>
@@ -56,7 +56,7 @@ export default function ProductCard({ id, dict, locale, compact = false }) {
         <div className="flex items-center gap-4">
           <Image src={p.logo} alt="" width={72} height={72} className="h-16 w-16 rounded-2xl object-contain" />
           <div>
-            <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl">{p.name}</h2>
+            <h2 className="font-display text-3xl font-semibold text-ink sm:text-4xl">{p.name}</h2>
             <p className="font-medium text-[color:var(--product)]">{copy.tagline}</p>
           </div>
         </div>
@@ -99,7 +99,7 @@ export default function ProductCard({ id, dict, locale, compact = false }) {
           width={p.visualSize[0]}
           height={p.visualSize[1]}
           sizes="(min-width: 1024px) 560px, 100vw"
-          className="relative w-full shadow-hard-lg ring-1 ring-line"
+          className="relative w-full rounded-3xl shadow-hard-lg ring-1 ring-line"
         />
       </div>
     </article>

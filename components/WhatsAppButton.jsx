@@ -1,15 +1,24 @@
-import { company } from "@/lib/company";
+"use client";
+
+import { usePathname } from "next/navigation";
+import { whatsappLink } from "@/lib/whatsapp";
+
+// Message prefilled per section, so the team sees where the visitor comes from.
+const sections = ["catalogue", "resellers", "mobility", "services", "products"];
+const messageKey = { catalogue: "shop" };
 
 export default function WhatsAppButton({ dict, locale }) {
-  const href = `${company.whatsappUrl}?text=${encodeURIComponent(dict.whatsapp.message)}`;
+  const pathname = usePathname() || "";
+  const section = sections.find((s) => pathname.startsWith(`/${locale}/${s}`));
+  const message = (section && dict.whatsapp.pages[messageKey[section] || section]) || dict.whatsapp.message;
   const isRtl = locale === "ar";
 
   return (
     <a
-      href={href}
+      href={whatsappLink(message)}
       target="_blank"
       rel="noopener noreferrer"
-      className={`focus-ring fixed bottom-5 z-40 flex items-center gap-2.5 rounded-full bg-[#25D366] py-3 pe-4 ps-3 shadow-lg shadow-black/20 transition-transform hover:scale-105 ${
+      className={`focus-ring fixed bottom-5 z-40 flex items-center gap-2.5 rounded-full bg-[#1F8A4C] py-3 pe-4 ps-3 shadow-lg shadow-black/20 transition-transform hover:scale-105 ${
         isRtl ? "left-5" : "right-5"
       }`}
       aria-label={dict.whatsapp.label}
