@@ -30,20 +30,22 @@ module.exports = {
         },
         gold: {
           DEFAULT: token("gold"),
+          deep: token("gold-deep"),
           tint: token("gold-tint")
         },
         line: token("line"),
         night: token("night")
       },
       fontFamily: {
-        display: ["var(--font-display)", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "Georgia", "serif"],
         body: ["var(--font-body)", "system-ui", "sans-serif"],
         "display-ar": ["var(--font-display-ar)", "sans-serif"],
         "body-ar": ["var(--font-body-ar)", "sans-serif"]
       },
       boxShadow: {
-        hard: "4px 4px 0 0 rgb(var(--shadow) / 0.22)",
-        "hard-lg": "8px 8px 0 0 rgb(var(--shadow) / 0.22)",
+        // "hard" names kept from the first theme; they are soft card shadows now
+        hard: "0 8px 24px -14px rgb(var(--shadow) / 0.35)",
+        "hard-lg": "0 24px 60px -28px rgb(var(--shadow) / 0.45)",
         float: "0 10px 40px -12px rgb(var(--shadow) / 0.25)"
       },
       keyframes: {

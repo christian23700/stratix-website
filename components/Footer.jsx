@@ -10,13 +10,21 @@ export default function Footer({ locale, dict }) {
 
   const columns = [
     {
+      title: f.columns.shop,
+      links: [
+        { href: l("/catalogue?category=perfume"), label: f.links.perfumes },
+        { href: l("/catalogue?category=abaya"), label: f.links.abayas },
+        { href: l("/resellers"), label: f.links.resellers },
+        { href: l("/list"), label: f.links.list }
+      ]
+    },
+    {
       title: f.columns.services,
       links: [
         { href: l("/services#software"), label: f.links.software },
-        { href: l("/services#ecommerce"), label: f.links.ecommerce },
-        { href: l("/catalogue"), label: dict.nav.catalogue },
         { href: l("/services#marketing"), label: f.links.marketing },
-        { href: l("/services#training"), label: f.links.training }
+        { href: l("/services#training"), label: f.links.training },
+        { href: l("/products"), label: dict.nav.products }
       ]
     },
     {
@@ -30,7 +38,6 @@ export default function Footer({ locale, dict }) {
     {
       title: f.columns.company,
       links: [
-        { href: l("/products"), label: dict.nav.products },
         { href: l("/about"), label: dict.nav.about },
         { href: l("/contact"), label: dict.nav.contact },
         { href: l("/contact?topic=support"), label: dict.nav.support }
@@ -41,7 +48,7 @@ export default function Footer({ locale, dict }) {
   return (
     <footer className="footer-gradient relative isolate overflow-hidden text-white">
       {/* decoration: accent line, dotted texture, Dubai skyline */}
-      <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-accent via-accent to-gold" aria-hidden="true" />
+      <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-gold/40 via-gold to-gold/40" aria-hidden="true" />
       <div className="footer-dots absolute inset-0 -z-10" aria-hidden="true" />
       <div className="footer-skyline absolute inset-x-0 bottom-0 -z-10 h-36 sm:h-52" aria-hidden="true" />
       <div className="container-x relative pb-10 pt-16">
@@ -81,7 +88,7 @@ export default function Footer({ locale, dict }) {
             </ul>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
             {columns.map((col) => (
               <div key={col.title}>
                 <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-white/50">{col.title}</h3>

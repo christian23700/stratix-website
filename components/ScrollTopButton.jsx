@@ -25,7 +25,7 @@ export default function ScrollTopButton({ label }) {
       aria-label={label}
       title={label}
       tabIndex={visible ? 0 : -1}
-      className={`focus-ring fixed bottom-[5.5rem] end-6 z-40 flex h-11 w-11 items-center justify-center bg-surface text-ink shadow-hard ring-1 ring-line transition-all duration-300 hover:bg-accent hover:text-white ${
+      className={`focus-ring fixed bottom-[5.5rem] end-6 z-40 flex h-11 w-11 items-center justify-center bg-surface text-ink rounded-2xl shadow-hard ring-1 ring-line transition-all duration-300 hover:bg-accent hover:text-white ${
         visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-3 opacity-0"
       }`}
     >

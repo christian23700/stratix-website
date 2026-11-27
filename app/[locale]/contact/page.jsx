@@ -38,7 +38,7 @@ export default function ContactPage({ params, searchParams }) {
 
         <aside className="space-y-6">
           <div className="bg-surface p-7 ring-1 ring-line">
-            <h2 className="font-display text-lg font-bold text-ink">{c.direct.title}</h2>
+            <h2 className="font-display text-lg font-semibold text-ink">{c.direct.title}</h2>
             <ul className="mt-5 space-y-4">
               {direct.map((d) => (
                 <li key={d.label} className="flex gap-3">
@@ -68,7 +68,7 @@ export default function ContactPage({ params, searchParams }) {
 
           <div className="bg-surface p-7 ring-1 ring-line">
             <p className="text-sm text-ink-muted">{dict.footer.partner}</p>
-            <h2 className="font-display text-lg font-bold text-ink">{company.partner.name}</h2>
+            <h2 className="font-display text-lg font-semibold text-ink">{company.partner.name}</h2>
             <ul className="mt-3 space-y-1.5 text-sm">
               <li className="flex items-center gap-2 text-ink-soft">
                 <Icon name="pin" size={16} className="text-ink-muted" />
@@ -90,7 +90,7 @@ export default function ContactPage({ params, searchParams }) {
           </div>
 
           <div className="bg-surface p-7 ring-1 ring-line">
-            <h2 className="font-display text-lg font-bold text-ink">{c.productSupport.title}</h2>
+            <h2 className="font-display text-lg font-semibold text-ink">{c.productSupport.title}</h2>
             <p className="mt-2 text-sm text-ink-soft">{c.productSupport.text}</p>
             <ul className="mt-4 space-y-2 text-sm">
               {Object.values(products).map((p) => (

@@ -36,7 +36,7 @@ export default function ServicesPage({ params }) {
             <a
               key={s.id}
               href={`#${s.id}`}
-              className="focus-ring inline-flex items-center gap-2 bg-surface px-4 py-2 text-sm font-medium text-ink ring-1 ring-line hover:ring-accent"
+              className="focus-ring inline-flex items-center gap-2 rounded-full bg-surface px-4 py-2 text-sm font-medium text-ink ring-1 ring-line hover:ring-accent"
             >
               <Icon name={s.icon} size={16} className="text-accent" />
               {plain(s.title)}
@@ -54,7 +54,7 @@ export default function ServicesPage({ params }) {
                   <Icon name={s.icon} size={18} />
                   {s.tag}
                 </span>
-                <h2 className="mt-3 font-display text-3xl font-bold leading-tight text-ink sm:text-4xl text-balance">
+                <h2 className="mt-3 font-display text-3xl font-semibold leading-tight text-ink sm:text-4xl text-balance">
                   <Highlight text={s.title} />
                 </h2>
                 <p className="mt-4 text-lg leading-relaxed text-ink-soft">{s.text}</p>
@@ -85,7 +85,7 @@ export default function ServicesPage({ params }) {
                 width={visualSize[0]}
                 height={visualSize[1]}
                 sizes="(min-width: 1024px) 560px, 100vw"
-                className="w-full shadow-hard-lg ring-1 ring-line"
+                className="w-full rounded-3xl shadow-hard-lg ring-1 ring-line"
               />
             </div>
           </section>
@@ -95,8 +95,8 @@ export default function ServicesPage({ params }) {
       <CtaBanner
         title={dict.home.cta.title}
         text={dict.home.cta.text}
-        primary={{ href: l("/contact"), label: dict.home.cta.primary }}
-        secondary={{ href: company.whatsappUrl, label: dict.home.cta.secondary }}
+        primary={{ href: l("/contact"), label: dict.nav.contact }}
+        secondary={{ href: company.whatsappUrl, label: dict.home.cta.button }}
       />
     </>
   );

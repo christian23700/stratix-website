@@ -7,18 +7,22 @@ import { usePathname } from "next/navigation";
 import LanguageSwitcher from "./LanguageSwitcher";
 import ThemeToggle from "./ThemeToggle";
 import ButtonLink from "./ui/Button";
+import Icon from "./ui/Icon";
+import { useList } from "./shop/ListProvider";
+import { whatsappLink } from "@/lib/whatsapp";
 
 export default function Header({ locale, dict }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const list = useList();
 
   useEffect(() => setOpen(false), [pathname]);
 
   const nav = [
-    { href: `/${locale}/services`, label: dict.nav.services },
-    { href: `/${locale}/catalogue`, label: dict.nav.catalogue },
+    { href: `/${locale}/catalogue`, label: dict.nav.shop },
+    { href: `/${locale}/resellers`, label: dict.nav.resellers },
     { href: `/${locale}/mobility`, label: dict.nav.mobility },
-    { href: `/${locale}/products`, label: dict.nav.products },
+    { href: `/${locale}/services`, label: dict.nav.services },
     { href: `/${locale}/about`, label: dict.nav.about }
   ];
 
@@ -33,13 +37,13 @@ export default function Header({ locale, dict }) {
             <Image src="/images/logo-white.png" alt="Stratix" width={1355} height={359} priority className="hidden h-7 w-auto sm:h-8 dark:block" />
           </Link>
 
-          <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
+          <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary">
             {nav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`focus-ring text-[15px] transition-colors ${
-                  isActive(item.href) ? "font-semibold text-accent" : "text-ink-soft hover:text-ink"
+                className={`focus-ring whitespace-nowrap text-[15px] transition-colors ${
+                  isActive(item.href) ? "font-semibold text-ink underline decoration-gold decoration-2 underline-offset-8" : "text-ink-soft hover:text-ink"
                 }`}
               >
                 {item.label}
@@ -50,15 +54,30 @@ export default function Header({ locale, dict }) {
           <div className="hidden items-center gap-3 lg:flex">
             <LanguageSwitcher locale={locale} />
             <ThemeToggle labels={dict.nav.theme} />
-            <ButtonLink href={`/${locale}/contact?topic=support`} variant="secondary" size="sm">
-              {dict.nav.support}
-            </ButtonLink>
-            <ButtonLink href={`/${locale}/contact`} size="sm">
+            <Link
+              href={`/${locale}/list`}
+              className="focus-ring relative inline-flex min-h-[44px] items-center gap-2 whitespace-nowrap rounded-full px-3 text-sm font-semibold text-ink ring-1 ring-ink/20 hover:ring-ink/50"
+            >
+              <Icon name="list" size={18} />
+              <span className="hidden xl:inline">{dict.nav.list}</span>
+              <span className="min-w-[1.25rem] rounded-full bg-gold px-1.5 text-center text-xs text-[#16233B]" aria-label={`${dict.nav.list}: ${list.count}`}>
+                {list.count}
+              </span>
+            </Link>
+            <ButtonLink href={whatsappLink(dict.whatsapp.message)} size="sm">
               {dict.nav.cta}
             </ButtonLink>
           </div>
 
           <div className="-me-2 flex items-center gap-1 lg:hidden">
+            <Link
+              href={`/${locale}/list`}
+              className="focus-ring relative inline-flex h-11 items-center gap-1.5 rounded-full px-2.5 text-ink"
+              aria-label={`${dict.nav.list}: ${list.count}`}
+            >
+              <Icon name="list" size={20} />
+              <span className="min-w-[1.25rem] rounded-full bg-gold px-1.5 text-center text-xs font-semibold text-[#16233B]">{list.count}</span>
+            </Link>
             <ThemeToggle labels={dict.nav.theme} />
             <button
               type="button"
@@ -88,7 +107,7 @@ export default function Header({ locale, dict }) {
                   key={item.href}
                   href={item.href}
                   className={`focus-ring rounded-lg px-2 py-3 text-[15px] ${
-                    isActive(item.href) ? "font-semibold text-accent" : "text-ink"
+                    isActive(item.href) ? "font-semibold text-gold-deep" : "text-ink"
                   }`}
                 >
                   {item.label}
@@ -98,10 +117,10 @@ export default function Header({ locale, dict }) {
             <div className="mt-3 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-4">
               <LanguageSwitcher locale={locale} />
               <div className="flex gap-2">
-                <ButtonLink href={`/${locale}/contact?topic=support`} variant="secondary" size="sm">
-                  {dict.nav.support}
+                <ButtonLink href={`/${locale}/contact`} variant="secondary" size="sm">
+                  {dict.nav.contact}
                 </ButtonLink>
-                <ButtonLink href={`/${locale}/contact`} size="sm">
+                <ButtonLink href={whatsappLink(dict.whatsapp.message)} size="sm">
                   {dict.nav.cta}
                 </ButtonLink>
               </div>

@@ -1,5 +1,5 @@
 import "../globals.css";
-import { Bricolage_Grotesque, Noto_Kufi_Arabic, IBM_Plex_Sans_Arabic } from "next/font/google";
+import { Playfair_Display, Inter, Noto_Kufi_Arabic, IBM_Plex_Sans_Arabic } from "next/font/google";
 import { notFound } from "next/navigation";
 import { locales, localeMeta } from "@/lib/i18n-config";
 import { getDictionary } from "@/lib/get-dictionary";
@@ -12,12 +12,19 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ScrollTopButton from "@/components/ScrollTopButton";
+import { ListProvider } from "@/components/shop/ListProvider";
 
-// Genuka uses Bricolage Grotesque for both headings and text.
-const bricolage = Bricolage_Grotesque({
+// Boutique look: a serif for headings, Inter for text.
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["500", "600", "700"],
   variable: "--font-display",
+  display: "swap"
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-body",
   display: "swap"
 });
 
@@ -43,7 +50,7 @@ export function generateStaticParams() {
 }
 
 export const viewport = {
-  themeColor: "#0B2D6B",
+  themeColor: "#0F2B5B",
   width: "device-width",
   initialScale: 1
 };
@@ -73,24 +80,24 @@ export default function LocaleLayout({ children, params }) {
 
   return (
     // suppressHydrationWarning: the theme script sets data-theme on <html> before React hydrates
-    <html lang={locale} dir={dir} className={[bricolage.variable, notoKufiArabic.variable, plexArabic.variable].join(" ")} suppressHydrationWarning>
+    <html lang={locale} dir={dir} className={[playfair.variable, inter.variable, notoKufiArabic.variable, plexArabic.variable].join(" ")} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body
         className={[
-          // --font-body follows the display face, like Genuka
-          "[--font-body:var(--font-display)]",
           locale === "ar" ? "font-body-ar" : "font-body",
           "flex min-h-screen flex-col bg-canvas text-ink antialiased"
         ].join(" ")}
       >
         <JsonLd data={[organizationJsonLd(locale), websiteJsonLd(locale)]} />
-        <Header locale={locale} dict={dict} />
-        <main className="flex-1">{children}</main>
-        <Footer locale={locale} dict={dict} />
-        <WhatsAppButton dict={dict} locale={locale} />
-        <ScrollTopButton label={dict.common.backToTop} />
+        <ListProvider>
+          <Header locale={locale} dict={dict} />
+          <main className="flex-1">{children}</main>
+          <Footer locale={locale} dict={dict} />
+          <WhatsAppButton dict={dict} locale={locale} />
+          <ScrollTopButton label={dict.common.backToTop} />
+        </ListProvider>
       </body>
     </html>
   );

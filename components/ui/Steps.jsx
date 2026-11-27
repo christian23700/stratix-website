@@ -1,27 +1,21 @@
 import Highlight from "./Highlight";
 
-/** Three-step process row with labelled tabs and a connecting line (Genuka "Step 1/2/3"). */
+/** Numbered process steps (3 or 4) on rounded cards. */
 export default function Steps({ title, steps }) {
   return (
     <div>
-      <h2 className="mx-auto max-w-3xl text-center font-display text-3xl font-bold leading-tight text-ink sm:text-4xl md:text-5xl text-balance">
+      <h2 className="mx-auto max-w-3xl text-center font-display text-3xl font-semibold leading-tight text-ink sm:text-4xl md:text-5xl text-balance">
         <Highlight text={title} />
       </h2>
-      <ol className="relative mt-12 grid gap-6 md:grid-cols-3">
-        <span className="absolute left-[16%] right-[16%] top-[54px] hidden h-px bg-line md:block" aria-hidden="true" />
+      <ol className={`mt-12 grid gap-5 sm:grid-cols-2 ${steps.length > 3 ? "lg:grid-cols-4" : "lg:grid-cols-3"}`}>
         {steps.map((step, i) => (
-          <li key={step.title} className="relative flex flex-col items-center text-center">
-            <span className="bg-accent px-4 py-1.5 text-sm font-semibold text-white shadow-hard">{step.label}</span>
-            <span
-              className={`relative mt-5 h-3.5 w-3.5 rounded-full border-2 ${
-                i === steps.length - 1 ? "border-accent bg-accent" : "border-ink-muted bg-surface"
-              }`}
-              aria-hidden="true"
-            />
-            <div className="mt-5 w-full flex-1 rounded-xl bg-surface p-6 text-start ring-1 ring-line">
-              <h3 className="font-display text-lg font-semibold text-ink">{step.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink-soft">{step.text}</p>
-            </div>
+          <li key={step.title} className="flex flex-col gap-2 rounded-2xl bg-surface p-6 rounded-2xl shadow-hard ring-1 ring-line">
+            <span className="font-display text-3xl font-semibold text-gold-deep" aria-hidden="true">
+              {i + 1}
+            </span>
+            {step.label && <span className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-muted">{step.label}</span>}
+            <h3 className="font-display text-lg font-semibold text-ink">{step.title}</h3>
+            <p className="text-sm leading-relaxed text-ink-soft">{step.text}</p>
           </li>
         ))}
       </ol>

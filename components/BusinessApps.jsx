@@ -21,8 +21,8 @@ export default function BusinessApps({ copy, ctaHref }) {
   return (
     <div>
       <div className="mx-auto max-w-3xl text-center">
-        <span className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">[ {copy.badge} ]</span>
-        <h2 className="mt-3 font-display text-3xl font-bold leading-tight text-ink sm:text-4xl md:text-5xl text-balance">
+        <span className="text-xs font-semibold uppercase tracking-[0.16em] text-gold-deep">{copy.badge}</span>
+        <h2 className="mt-3 font-display text-3xl font-semibold leading-tight text-ink sm:text-4xl md:text-5xl text-balance">
           <Highlight text={copy.title} />
         </h2>
         <p className="mt-4 text-lg leading-relaxed text-ink-soft">{copy.lead}</p>
@@ -53,7 +53,7 @@ export default function BusinessApps({ copy, ctaHref }) {
           <p className="text-sm font-semibold" style={{ color: app.color }}>
             {text.tagline}
           </p>
-          <h3 className="mt-2 font-display text-3xl font-bold text-ink">{app.name}</h3>
+          <h3 className="mt-2 font-display text-3xl font-semibold text-ink">{app.name}</h3>
           <p className="mt-4 leading-relaxed text-ink-soft">{text.text}</p>
           <ul className="mt-6 space-y-3">
             {text.features.map((f) => (
@@ -71,7 +71,7 @@ export default function BusinessApps({ copy, ctaHref }) {
 
         <div className="min-w-0">
           {/* browser frame */}
-          <div className="overflow-hidden bg-surface shadow-hard-lg ring-1 ring-line" dir="ltr">
+          <div className="overflow-hidden bg-surface rounded-3xl shadow-hard-lg ring-1 ring-line" dir="ltr">
             <div className="flex items-center gap-2 border-b border-line bg-canvas px-4 py-2.5">
               <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
               <span className="h-3 w-3 rounded-full bg-[#febc2e]" />

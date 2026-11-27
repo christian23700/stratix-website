@@ -2,7 +2,7 @@
  * Renders dictionary strings where words wrapped in [[double brackets]] get
  * the accent colour — the Genuka "Run [[your whole business]] in one place" look.
  */
-export default function Highlight({ text, className = "text-accent" }) {
+export default function Highlight({ text, className = "text-gold-deep" }) {
   const parts = text.split(/\[\[(.+?)\]\]/g);
   return parts.map((part, i) =>
     i % 2 === 1 ? (
